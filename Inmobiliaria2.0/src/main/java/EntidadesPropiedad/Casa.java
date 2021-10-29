@@ -14,7 +14,4 @@ public class Casa extends Propiedad{
 	protected Boolean jardin;
 	protected Boolean mascotas;
 	
-	
-	
-	
 }

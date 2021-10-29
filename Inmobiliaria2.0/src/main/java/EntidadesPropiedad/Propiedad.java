@@ -38,7 +38,7 @@ public class Propiedad {
 	protected Boolean alquiler;
 	protected Boolean venta;
 	@ManyToOne
-	protected Propietario prop;
+	protected Propietario propietario;
 	
 	
 	

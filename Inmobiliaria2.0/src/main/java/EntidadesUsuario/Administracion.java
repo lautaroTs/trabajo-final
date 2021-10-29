@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class Administracion extends Usuario{
 
-	protected String domicilio;
+	protected String direccion;
 	@OneToMany
 	protected Propietario propietario;
 	
