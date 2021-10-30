@@ -1,12 +1,13 @@
 package ServiciosPropiedad;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import EntidadesPropiedad.Casa;
 import EntidadesPropiedad.Propiedad;
-import EntidadesUsuario.Usuario;
+import EntidadesUsuario.Propietario;
 import ServiciosUsuario.ErrorServicio;
 
 @Service
@@ -43,7 +44,7 @@ public void CrearCasa(Integer dormitorios, Integer ambientes, Boolean amoblado, 
 			casa.setId(propiedad.getId());
 			
 		}else {
-			throw new ErrorServicio("No se encontro el inquilino solicitado");
+			throw new ErrorServicio("No se encontro la casa solicitada");
 		}
 		
 		casa.setDomritorios(dormitorios);
@@ -83,4 +84,53 @@ public void CrearCasa(Integer dormitorios, Integer ambientes, Boolean amoblado, 
 		
 	}
 
+	public void ModificarCasa(String id, String zona, String direccion, Double superficie, Integer banios, Boolean estacionamiento, Double precio, Date disponibilidadInicio, Date disponibilidadFinal, Double expensas, Integer plantas, Integer antiguedad, Boolean alquiler, Boolean venta, String prop, Integer dormitorios, Integer ambientes, Boolean amoblado, Boolean jardin, Boolean mascotas, String idp) throws ErrorServicio{
+		Optional<Casa> respuesta = casaRepositorio.findById(id);
+		Propietario propietario = propietarioRepositorio.getById(prop);
+		Propiedad propiedad = propiedadRepositorio.getById(idp);
+		
+		if(respuesta.isPresent()) {
+			
+			Casa casa = respuesta.get();
+			
+			casa.setZona(zona);
+			casa.setDireccion(direccion);
+			casa.setSuperficie(superficie);
+			casa.setBanios(banios);
+			casa.setEstacionamiento(estacionamiento);
+			casa.setPrecio(precio);
+			casa.setDisponibilidadInicio(disponibilidadInicio);
+			casa.setDisponibilidadFinal(disponibilidadFinal);
+			casa.setExpensas(expensas);
+			casa.setPlantas(plantas);
+			casa.setAntiguedad(antiguedad);
+			casa.setAlquiler(alquiler);
+			casa.setVenta(venta);
+			casa.setPropietario(propietarioRepositorio.findById(prop));
+			casa.setDomritorios(dormitorios);
+			casa.setAmbientes(ambientes);
+			casa.setAmoblado(amoblado);
+			casa.setJardin(jardin);
+			casa.setMascotas(mascotas);
+			
+			casaRepositorio.save(casa);
+		}else {
+			throw new ErrorServicio("No se encontro la casa solicitada");
+		}
+	}
+	
+	public void EliminarCasa(String id) throws ErrorServicio{
+		
+		Optional<Casa> respuesta = casaRepositorio.findById(id);
+		
+		if(respuesta.isPresent()) {
+			
+			Casa casa = respuesta.get();
+			
+			casaRepositorio.deleteById(id);
+			
+		}else {
+			throw new ErrorServicio("No se encontro la casa solicitada");
+		}
+	}
 }

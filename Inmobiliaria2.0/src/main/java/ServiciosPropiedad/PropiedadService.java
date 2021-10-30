@@ -6,8 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import EntidadesPropiedad.Propiedad;
-import EntidadesUsuario.Inquilino;
-import EntidadesUsuario.Usuario;
+import EntidadesUsuario.Propietario;
 import ServiciosUsuario.ErrorServicio;
 
 @Service
@@ -143,7 +142,7 @@ public class PropiedadService {
 			propiedadRepositorio.deleteById(id);
 			
 		}else {
-			throw new ErrorServicio("No se encontro el inquilino solicitado");
+			throw new ErrorServicio("No se encontro la propiedad solicitada");
 		}
 	}
 }

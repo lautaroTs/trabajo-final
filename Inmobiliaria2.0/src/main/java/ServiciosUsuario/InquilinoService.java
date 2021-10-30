@@ -59,7 +59,7 @@ public void Validar (Integer dni, String idu, String idp) throws ErrorServicio{
 		}
 	}
 
-public void ModificarPropietario (String id, String nombre, String apellido, String contrasenia, String email, Integer dni, String idp) {
+public void ModificarInquilino (String id, String nombre, String apellido, String contrasenia, String email, Integer dni, String idp) {
 	
 		Optional<Inquilino> respuesta = inquilinoRepositorio.findById(id);
 		Propiedad propiedad = propiedadRepositorio.getById(idp);
