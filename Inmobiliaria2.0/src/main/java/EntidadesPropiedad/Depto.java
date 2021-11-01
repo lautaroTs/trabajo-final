@@ -12,7 +12,7 @@ public class Depto extends Propiedad {
 	protected Boolean espCompartidos;
 	protected Integer piso;
 	protected Boolean patio;
-	protected Integer domritorios;
+	protected Integer dormitorios;
 	protected Integer ambientes;
 	protected Boolean seguridad;
 	protected Boolean mascotas;
