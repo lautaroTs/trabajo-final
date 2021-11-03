@@ -18,9 +18,9 @@ private PropiedadRepositorio propiedadRepositorio;
 @Autowired
 private LocalRepositorio localRepositorio;
 	
-	public void CrearLocal() {
+	public void CrearLocal(String idp) throws ErrorServicio {
 		
-		Validar();
+		Validar(idp);
 		
 		Local local = new Local();
 		
@@ -53,13 +53,18 @@ private LocalRepositorio localRepositorio;
 		
 	}
 	
-	public void Validar() {
+	public void Validar(String idp) throws ErrorServicio {
+		
+		if (idp == null) {
+			throw new ErrorServicio("idPropiedad no puede ser null");
+		}
+
 		
 	}
 	
 	public void ModificarLocal(String id, String zona, String direccion, Double superficie, Integer banios, Boolean estacionamiento, Double precio, Date disponibilidadInicio, Date disponibilidadFinal, Double expensas, Integer plantas, Integer antiguedad, Boolean alquiler, Boolean venta, String idp) throws ErrorServicio{
 		Optional<Local> respuesta = localRepositorio.findById(id);
-		Propiedad propiedad = propiedadRepositorio.getById(idp);
+		//Propiedad propiedad = propiedadRepositorio.getById(idp);
 		
 		if(respuesta.isPresent()) {
 			
@@ -94,7 +99,7 @@ public void EliminarLocal(String id) throws ErrorServicio{
 			
 			Local local = respuesta.get();
 			
-			localRepositorio.deleteById(id);
+			localRepositorio.delete(local);
 			
 		}else {
 			throw new ErrorServicio("No se encontro el local solicitado");
