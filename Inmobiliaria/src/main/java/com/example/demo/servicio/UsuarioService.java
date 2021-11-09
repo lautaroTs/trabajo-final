@@ -18,7 +18,7 @@ public class UsuarioService implements UserDetailsService{
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
 	
-	public void CrearUsuario (String nombre, String apellido, String email, String contrasenia) throws ErrorServicio{
+	public Usuario CrearUsuario (String nombre, String apellido, String email, String contrasenia) throws ErrorServicio{
 		
 		Validar(nombre, apellido, email, contrasenia);
 		
@@ -30,6 +30,8 @@ public class UsuarioService implements UserDetailsService{
 		usuario.setContrasenia(contrasenia);
 		usuario.setNivelAcceso(1);
 		usuarioRepositorio.save(usuario);
+		
+		return usuario;
 	}
 	
 	public void Validar (String nombre, String apellido, String email, String contrasenia) throws ErrorServicio{
