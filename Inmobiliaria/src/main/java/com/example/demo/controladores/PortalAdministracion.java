@@ -25,18 +25,39 @@ public class PortalAdministracion {
 }
 	
 	@PostMapping("/crearAdministracion")
-	public String CrearAdministracion(@RequestParam String direccion, @RequestParam String idu, @RequestParam String idp) {
+	public String CrearAdministracion(@RequestParam String direccion, @RequestParam String id) {
 		
 		try {
-			administracionService.CrearAdministracion(direccion, idu, idp);
+			administracionService.CrearAdministracion(direccion, id);
 		} catch (ErrorServicio e) {
 			e.printStackTrace();
-			return "administracion.html";
+			return "usuarioAdministracion.html";
 		}
 		
 		return "index.html";
 		
 	}
+	
+	@GetMapping("/crearUsuarioAdministracion")
+	public String crearUsuarioAdministracion() {
+		return "crearUsuarioAdministracion.html";
+}
+	
+	@PostMapping("/crearUsuarioAdministracion")
+	public String CrearUsuarioAdministracion(@RequestParam String nombre, @RequestParam String apellido, @RequestParam String email, @RequestParam String contrasenia,
+			@RequestParam String direccion) {
+		
+		try {
+			administracionService.CrearUsuarioAdministracion(nombre, apellido, email, contrasenia, direccion);
+		} catch (ErrorServicio e) {
+			e.printStackTrace();
+			return "usuarioAdministracion.html";
+		}
+		
+		return "index.html";
+		
+	}
+	
 	
 	@GetMapping("/modificarAdministracion")
 	public String modificarAdministracion() {
@@ -44,10 +65,10 @@ public class PortalAdministracion {
 	}
 	
 	@PostMapping("/modificarAdministracion")
-	public String ModificarAdministracion(@RequestParam String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String contrasenia, @RequestParam String email, @RequestParam String direccion, @RequestParam String idp) {
+	public String ModificarAdministracion(@RequestParam String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String contrasenia, @RequestParam String email, @RequestParam String direccion) {
 	
 	try {
-		administracionService.ModificarAdministracion(id, nombre, apellido, contrasenia, email, direccion, idp);
+		administracionService.ModificarAdministracion(id, nombre, apellido, contrasenia, email, direccion);
 	}catch (ErrorServicio e) {
 		e.printStackTrace();
 		return "administracion.html";
