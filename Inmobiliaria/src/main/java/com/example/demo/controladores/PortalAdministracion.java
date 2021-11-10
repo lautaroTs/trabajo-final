@@ -25,10 +25,10 @@ public class PortalAdministracion {
 }
 	
 	@PostMapping("/crearAdministracion")
-	public String CrearAdministracion(@RequestParam String direccion, @RequestParam String idu, @RequestParam String idp) {
+	public String CrearAdministracion(@RequestParam String direccion, @RequestParam String id) {
 		
 		try {
-			administracionService.CrearAdministracion(direccion, idu, idp);
+			administracionService.CrearAdministracion(direccion, id);
 		} catch (ErrorServicio e) {
 			e.printStackTrace();
 			return "administracion.html";
