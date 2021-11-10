@@ -17,9 +17,9 @@
 	<br>
 	<h1>Registro de Propietario</h1><br>
 	<section>
-		<form th:action="@{/inicio}" class="formaction">
+		<form th:action="@{/usuario/crearUsuario}" class="formaction" method="POST">
 			<div class="row">
-				<div class="coal"></div>
+				<div class="col"></div>
 				<div class="col">
 					<label for="nombre">Nombre</label><br>
 					<input type="nombre" name="nombre" id="nombre" / required><br>
@@ -93,7 +93,7 @@
 			</div>
 			<div class="col-md-1"></div>
 			<div class="col-md-6">
-				<form action="">
+				<form th:action="">
 					<input type="text" name="Nombre" placeholder="Ingrese su nombre" id="nombre" />
 					<label for="email"></label>
 					<input type="email" placeholder="Ingrese su E-Mail" /><br />
