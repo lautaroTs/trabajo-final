@@ -1,9 +1,12 @@
 package com.example.demo.servicio;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import com.example.demo.entidades.Inquilino;
 import com.example.demo.entidades.Propiedad;
@@ -25,7 +28,7 @@ public class InquilinoService {
 	@Autowired
 	private PropiedadRepositorio propiedadRepositorio;
 	
-public void CrearInquilino(Integer dni, String idu, String idp) throws ErrorServicio{
+public Inquilino CrearInquilino(Integer dni, String idu, String idp) throws ErrorServicio{
 		
 		Validar(dni, idu, idp);
 		
@@ -43,15 +46,18 @@ public void CrearInquilino(Integer dni, String idu, String idp) throws ErrorServ
 			inquilino.setEmail(usuario.getEmail());
 			inquilino.setId(usuario.getId());
 			inquilino.setNivelAcceso(2);
+			inquilino.setDni(dni);
+			inquilino.setPropiedad(propiedadRepositorio.findById(idp).get());
+			
+			inquilinoRepositorio.save(inquilino);
+			
+			return inquilino;
 			
 		}else {
 			throw new ErrorServicio("No se encontro el inquilino solicitado");
 		}
 
-		inquilino.setDni(dni);
-		inquilino.setPropiedad(propiedadRepositorio.findById(idp).get());
-		
-		inquilinoRepositorio.save(inquilino);
+	
 	}
 
 public void Validar (Integer dni, String idu, String idp) throws ErrorServicio{
@@ -105,4 +111,13 @@ public void EliminarInquilino(String id) throws ErrorServicio{
 			throw new ErrorServicio("No se encontro el inquilino solicitado");
 		}
 	}
+
+@Transactional
+public List<Inquilino> listarInqulino() {
+	return inquilinoRepositorio.findAll(); 
+	
+	
+	
+}
+
 }

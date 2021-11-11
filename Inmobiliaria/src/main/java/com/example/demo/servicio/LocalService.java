@@ -1,10 +1,13 @@
 package com.example.demo.servicio;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.entidades.Inquilino;
 import com.example.demo.entidades.Local;
 import com.example.demo.entidades.Propiedad;
 import com.example.demo.errores.ErrorServicio;
@@ -18,7 +21,7 @@ private PropiedadRepositorio propiedadRepositorio;
 @Autowired
 private LocalRepositorio localRepositorio;
 	
-	public void CrearLocal(String idp) throws ErrorServicio {
+	public Local CrearLocal(String idp) throws ErrorServicio {
 		
 		Validar(idp);
 		
@@ -44,12 +47,15 @@ private LocalRepositorio localRepositorio;
 			local.setAlquiler(propiedad.getAlquiler());
 			local.setVenta(propiedad.getVenta());
 			local.setId(propiedad.getId());
+			localRepositorio.save(local);
+			
+			return local;
 			
 		}else {
 			throw new ErrorServicio("No se encontro el local solicitado");
 		}
 		
-		localRepositorio.save(local);
+	
 		
 	}
 	
@@ -105,5 +111,9 @@ public void EliminarLocal(String id) throws ErrorServicio{
 			throw new ErrorServicio("No se encontro el local solicitado");
 		}
 	}
-	
+@Transactional
+public List<Local> listarLocal() {
+	List<Local> locales = localRepositorio.findAll();
+	return locales;
+}
 }

@@ -23,7 +23,7 @@ public class PropiedadService {
 	@Autowired
     private PropietarioRepositorio propietarioRepositorio;
 	
-	public void CrearPropiedad(String zona, String direccion, Double superficie, Integer banios, Boolean estacionamiento, Double precio, Date disponibilidadInicio, Date disponibilidadFinal, Double expensas, Integer plantas, Integer antiguedad, Boolean alquiler, Boolean venta, String prop) throws ErrorServicio {
+	public Propiedad CrearPropiedad(String zona, String direccion, Double superficie, Integer banios, Boolean estacionamiento, Double precio, Date disponibilidadInicio, Date disponibilidadFinal, Double expensas, Integer plantas, Integer antiguedad, Boolean alquiler, Boolean venta, String prop) throws ErrorServicio {
 		
 		Validar(zona, direccion, superficie, banios, estacionamiento, precio, disponibilidadInicio, disponibilidadFinal, expensas, plantas, antiguedad, alquiler, venta, prop);
 		
@@ -45,6 +45,7 @@ public class PropiedadService {
 		propiedad.setPropietario(propietarioRepositorio.findById(prop).get());
 		
 		propiedadRepositorio.save(propiedad);
+		return propiedad;
 	}
 	
 	public void Validar(String zona, String direccion, Double superficie, Integer banios, Boolean estacionamiento, Double precio, Date disponibilidadInicio, Date disponibilidadFinal, Double expensas, Integer plantas, Integer antiguedad, Boolean alquiler, Boolean venta, String prop) throws ErrorServicio {
@@ -153,4 +154,5 @@ public class PropiedadService {
 			throw new ErrorServicio("No se encontro la propiedad solicitada");
 		}
 	}
+	
 }
