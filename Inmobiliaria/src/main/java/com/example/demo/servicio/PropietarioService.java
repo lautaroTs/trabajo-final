@@ -1,9 +1,11 @@
 package com.example.demo.servicio;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entidades.Propiedad;
 import com.example.demo.entidades.Propietario;
@@ -25,7 +27,7 @@ public class PropietarioService {
 	@Autowired
 	private PropiedadRepositorio propiedadRepositorio;
 	
-	public void CrearPropietario(Integer dni, String direccion, String idu, String idp) throws ErrorServicio{
+	public Propietario CrearPropietario(Integer dni, String direccion, String idu, String idp) throws ErrorServicio{
 		
 		Validar(dni, direccion, idu, idp);
 		
@@ -43,16 +45,18 @@ public class PropietarioService {
 			propietario.setEmail(usuario.getEmail());
 			propietario.setId(usuario.getId());
 			propietario.setNivelAcceso(3);
+			propietario.setDni(dni);
+			propietario.setDireccion(direccion);
+			propietario.setPropiedad(propiedadRepositorio.findById(idp).get());
+			
+			propietarioRepositorio.save(propietario);
+			return propietario;
 			
 		}else {
 			throw new ErrorServicio("No se encontro el propietario solicitado");
 		}
 
-		propietario.setDni(dni);
-		propietario.setDireccion(direccion);
-		propietario.setPropiedad(propiedadRepositorio.findById(idp).get());
 		
-		propietarioRepositorio.save(propietario);
 	}
 	
 	public void Validar (Integer dni, String direccion, String idu, String idp) throws ErrorServicio{
@@ -109,5 +113,12 @@ public class PropietarioService {
 		}else {
 			throw new ErrorServicio("No se encontro el propietario solicitado");
 		}
+	}
+	
+	@Transactional
+	public List<Propietario> listarPropietario() {
+		return propietarioRepositorio.findAll();
+		 
+	
 	}
 }

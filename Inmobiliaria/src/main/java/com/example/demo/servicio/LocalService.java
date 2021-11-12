@@ -113,7 +113,7 @@ public void EliminarLocal(String id) throws ErrorServicio{
 	}
 @Transactional
 public List<Local> listarLocal() {
-	List<Local> locales = localRepositorio.findAll();
-	return locales;
+	return  localRepositorio.findAll();
+	
 }
 }

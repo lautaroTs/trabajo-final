@@ -1,11 +1,14 @@
 package com.example.demo.servicio;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.entidades.Casa;
 import com.example.demo.entidades.Propiedad;
 import com.example.demo.entidades.Propietario;
 import com.example.demo.errores.ErrorServicio;
@@ -153,6 +156,12 @@ public class PropiedadService {
 		}else {
 			throw new ErrorServicio("No se encontro la propiedad solicitada");
 		}
+	}
+	@Transactional
+	public List<Propiedad> listarPropiedad() {
+		return propiedadRepositorio.findAll();
+		 
+	
 	}
 	
 }

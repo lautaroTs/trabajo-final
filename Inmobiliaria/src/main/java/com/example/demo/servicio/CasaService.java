@@ -153,8 +153,8 @@ public Casa CrearCasa(Integer dormitorios, Integer ambientes, Boolean amoblado, 
 	}
 	@Transactional
 	public List<Casa> listarCasa() {
-		List<Casa> casas = casaRepositorio.findAll();
-		return casas;
+		return casaRepositorio.findAll();
+		 
 	
 	}
 }
