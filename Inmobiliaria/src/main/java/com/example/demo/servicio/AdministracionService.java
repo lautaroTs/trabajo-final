@@ -1,11 +1,14 @@
 package com.example.demo.servicio;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entidades.Administracion;
+import com.example.demo.entidades.Inquilino;
 import com.example.demo.entidades.Usuario;
 import com.example.demo.errores.ErrorServicio;
 import com.example.demo.repositorio.AdministracionRepositorio;
@@ -46,7 +49,7 @@ public class AdministracionService {
 			administracion.setDireccion(direccion);
 			administracionRepositorio.save(administracion);
 
-			return administracion;
+			return administracion;//Hay en este método una devolución administración 
 		} else {
 			throw new ErrorServicio("No se encontro el usuario solicitado.");
 		}
@@ -69,7 +72,7 @@ public class AdministracionService {
 			
 			administracionRepositorio.save(administracion);
 			
-			return administracion;			
+			return administracion;	// En este método hay otro retono de administración 		
 		} catch (Exception e) {
 			throw new ErrorServicio("No se pudo crear el usuario administracion.");
 		}
@@ -135,4 +138,13 @@ public class AdministracionService {
 			throw new ErrorServicio("No se encontro la administracion solicitada");
 		}
 	}
+	
+	@Transactional
+	public List<Administracion> listarAdministracion() {
+		return administracionRepositorio.findAll(); 
+		
+		
+		
+	}
+	
 }

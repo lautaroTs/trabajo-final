@@ -1,11 +1,14 @@
 package com.example.demo.servicio;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entidades.Depto;
+import com.example.demo.entidades.Inquilino;
 import com.example.demo.entidades.Propiedad;
 import com.example.demo.errores.ErrorServicio;
 import com.example.demo.repositorio.DeptoRepositorio;
@@ -19,7 +22,7 @@ private PropiedadRepositorio propiedadRepositorio;
 private DeptoRepositorio departamentoRepositorio;
 
 
-	public void CrearDepartamento(Boolean amoblado, Boolean esCompartido, Integer piso, Boolean patio, Integer dormitorios, Integer ambientes, Boolean seguridad, Boolean mascotas, String idp) throws ErrorServicio {
+	public Depto CrearDepartamento(Boolean amoblado, Boolean esCompartido, Integer piso, Boolean patio, Integer dormitorios, Integer ambientes, Boolean seguridad, Boolean mascotas, String idp) throws ErrorServicio {
 		
 		
 		
@@ -49,21 +52,23 @@ private DeptoRepositorio departamentoRepositorio;
 			departamento.setAlquiler(propiedad.getAlquiler());
 			departamento.setVenta(propiedad.getVenta());
 			departamento.setId(propiedad.getId());
+			departamento.setAmoblado(amoblado);
+			departamento.setEspCompartidos(esCompartido);
+			departamento.setPiso(piso);
+			departamento.setPatio(patio);
+			departamento.setDormitorios(dormitorios);
+			departamento.setAmbientes(ambientes);
+			departamento.setSeguridad(seguridad);
+			departamento.setMascotas(mascotas);
+			
+			departamentoRepositorio.save(departamento);
+			return departamento;
 			
 		}else {
 			throw new ErrorServicio("No se encontro el departamento solicitado");
 		}
 		
-		departamento.setAmoblado(amoblado);
-		departamento.setEspCompartidos(esCompartido);
-		departamento.setPiso(piso);
-		departamento.setPatio(patio);
-		departamento.setDormitorios(dormitorios);
-		departamento.setAmbientes(ambientes);
-		departamento.setSeguridad(seguridad);
-		departamento.setMascotas(mascotas);
-		
-		departamentoRepositorio.save(departamento);
+	
 		
 	}
 	
@@ -161,4 +166,12 @@ public void EliminarDepartamento(String id) throws ErrorServicio{
 		}
 	}
 	
+@Transactional
+public List<Depto> listarDepto() {
+	return departamentoRepositorio.findAll(); 
+	
+	
+	
+}
+
 }

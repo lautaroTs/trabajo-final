@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entidades.Inquilino;
 import com.example.demo.entidades.Propiedad;
@@ -108,8 +109,11 @@ public class InquilinoService {
 			throw new ErrorServicio("No se encontro el inquilino solicitado");
 		}
 	}
-	
-	public List<Inquilino>listaInquilinos(){
+
+	@Transactional
+	public List<Inquilino> listarInqulino() {
 		return inquilinoRepositorio.findAll();
+
 	}
+
 }

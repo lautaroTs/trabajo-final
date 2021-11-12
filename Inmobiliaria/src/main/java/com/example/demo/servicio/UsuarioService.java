@@ -1,5 +1,6 @@
 package com.example.demo.servicio;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.entidades.Propiedad;
 import com.example.demo.entidades.Usuario;
 import com.example.demo.errores.ErrorServicio;
 import com.example.demo.repositorio.UsuarioRepositorio;
@@ -95,4 +98,10 @@ public class UsuarioService implements UserDetailsService{
 		return null;
 	}
 	
+	@Transactional
+	public List<Usuario> listarUsuario() {
+		return usuarioRepositorio.findAll();
+		 
+	
+	}
 }

@@ -1,12 +1,15 @@
 package com.example.demo.servicio;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entidades.Casa;
+import com.example.demo.entidades.Inquilino;
 import com.example.demo.entidades.Propiedad;
 import com.example.demo.entidades.Propietario;
 import com.example.demo.errores.ErrorServicio;
@@ -29,7 +32,7 @@ public class CasaService {
 	@Autowired
 	private PropietarioRepositorio propietarioRepositorio;
 	
-public void CrearCasa(Integer dormitorios, Integer ambientes, Boolean amoblado, Boolean jardin, Boolean mascotas, String idp) throws ErrorServicio {
+public Casa CrearCasa(Integer dormitorios, Integer ambientes, Boolean amoblado, Boolean jardin, Boolean mascotas, String idp) throws ErrorServicio {
 		
 		Validar(dormitorios, ambientes, amoblado, jardin, mascotas, idp);
 		
@@ -55,18 +58,20 @@ public void CrearCasa(Integer dormitorios, Integer ambientes, Boolean amoblado, 
 			casa.setAlquiler(propiedad.getAlquiler());
 			casa.setVenta(propiedad.getVenta());
 			casa.setId(propiedad.getId());
+			casa.setDomritorios(dormitorios);
+			casa.setAmbientes(ambientes);
+			casa.setAmoblado(amoblado);
+			casa.setJardin(jardin);
+			casa.setMascotas(mascotas);
+			
+			casaRepositorio.save(casa);
+			return casa;
 			
 		}else {
 			throw new ErrorServicio("No se encontro la casa solicitada");
 		}
 		
-		casa.setDomritorios(dormitorios);
-		casa.setAmbientes(ambientes);
-		casa.setAmoblado(amoblado);
-		casa.setJardin(jardin);
-		casa.setMascotas(mascotas);
-		
-		casaRepositorio.save(casa);
+	
 	}
 	
 	public void Validar(Integer dormitorios, Integer ambientes, Boolean amoblado, Boolean jardin, Boolean mascotas, String idp) throws ErrorServicio{
@@ -145,5 +150,11 @@ public void CrearCasa(Integer dormitorios, Integer ambientes, Boolean amoblado, 
 		}else {
 			throw new ErrorServicio("No se encontro la casa solicitada");
 		}
+	}
+	@Transactional
+	public List<Casa> listarCasa() {
+		return casaRepositorio.findAll();
+		 
+	
 	}
 }
