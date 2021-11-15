@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entidades.Administracion;
-import com.example.demo.entidades.Inquilino;
 import com.example.demo.entidades.Usuario;
 import com.example.demo.errores.ErrorServicio;
 import com.example.demo.repositorio.AdministracionRepositorio;
@@ -27,6 +26,7 @@ public class AdministracionService {
 	private UsuarioService usuarioService;
 
 	// Crear usuario administracion teniendo ya el usuario creado
+	@Transactional
 	public Administracion CrearAdministracion(String direccion, String id) throws ErrorServicio {
 
 		Validar(direccion, id);
@@ -56,6 +56,7 @@ public class AdministracionService {
 
 	}
 
+	@Transactional
 	public Administracion CrearUsuarioAdministracion(String nombre, String apellido, String email, String contrasenia,
 			String direccion) throws ErrorServicio {
 		try {
@@ -104,6 +105,7 @@ public class AdministracionService {
 		}
 	}
 
+	@Transactional
 	public void ModificarAdministracion(String id, String nombre, String apellido, String contrasenia, String email,
 			String direccion) throws ErrorServicio {
 

@@ -10,98 +10,99 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.entidades.Propiedad;
 import com.example.demo.entidades.Usuario;
 import com.example.demo.errores.ErrorServicio;
 import com.example.demo.repositorio.UsuarioRepositorio;
 
 @Service
-public class UsuarioService implements UserDetailsService{
+public class UsuarioService implements UserDetailsService {
 
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
-	
-	public Usuario CrearUsuario (String nombre, String apellido, String email, String contrasenia) throws ErrorServicio{
-		
+
+	@Transactional
+	public Usuario CrearUsuario(String nombre, String apellido, String email, String contrasenia) throws ErrorServicio {
+
 		Validar(nombre, apellido, email, contrasenia);
-		
+
 		Usuario usuario = new Usuario();
-		
+
 		usuario.setNombre(nombre);
 		usuario.setApellido(apellido);
 		usuario.setEmail(email);
 		usuario.setContrasenia(contrasenia);
 		usuario.setNivelAcceso(1);
 		usuarioRepositorio.save(usuario);
-		
+
 		return usuario;
 	}
-	
-	public void Validar (String nombre, String apellido, String email, String contrasenia) throws ErrorServicio{
-		
-		if(nombre == null || nombre.isEmpty()) {
+
+	public void Validar(String nombre, String apellido, String email, String contrasenia) throws ErrorServicio {
+
+		if (nombre == null || nombre.isEmpty()) {
 			throw new ErrorServicio("El nombre del usuario no puede ser null");
 		}
 
-		if(apellido == null || apellido.isEmpty()) {
+		if (apellido == null || apellido.isEmpty()) {
 			throw new ErrorServicio("El apellido del usuario no puede ser null");
 		}
 
-		if(email == null || email.isEmpty()) {
+		if (email == null || email.isEmpty()) {
 			throw new ErrorServicio("El email del usuario no puede ser null");
 		}
 
-		if(contrasenia == null || contrasenia.isEmpty()) {
+		if (contrasenia == null || contrasenia.isEmpty()) {
 			throw new ErrorServicio("La contraseña del usuario no puede ser null");
 		}
 	}
-	
-	public void ModificarUsuario (String id, String nombre, String apellido, String email, String contrasenia) throws ErrorServicio{
-		
+
+	@Transactional
+	public void ModificarUsuario(String id, String nombre, String apellido, String email, String contrasenia)
+			throws ErrorServicio {
+
 		Validar(nombre, apellido, email, contrasenia);
-		
+
 		Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
-		
-		if(respuesta.isPresent()) {
-			
+
+		if (respuesta.isPresent()) {
+
 			Usuario usuario = respuesta.get();
-			
+
 			usuario.setNombre(nombre);
 			usuario.setApellido(apellido);
 			usuario.setEmail(email);
 			usuario.setContrasenia(contrasenia);
-			
+
 			usuarioRepositorio.save(usuario);
-			
-		}else {
+
+		} else {
 			throw new ErrorServicio("No se encontro el usuario solicitado");
 		}
 	}
-	
-	public void EliminarUsuario(String id) throws ErrorServicio{
+
+	public void EliminarUsuario(String id) throws ErrorServicio {
 		Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
-		
-		if(respuesta.isPresent()) {
-			
+
+		if (respuesta.isPresent()) {
+
 			Usuario usuario = respuesta.get();
-			
+
 			usuarioRepositorio.delete(usuario);
-			
-		}else {
+
+		} else {
 			throw new ErrorServicio("No se encontro el usuario solicitado");
 		}
 	}
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Transactional
 	public List<Usuario> listarUsuario() {
 		return usuarioRepositorio.findAll();
-		 
-	
+
 	}
 }

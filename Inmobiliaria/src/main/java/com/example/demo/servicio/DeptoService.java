@@ -8,36 +8,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entidades.Depto;
-import com.example.demo.entidades.Inquilino;
 import com.example.demo.entidades.Propiedad;
 import com.example.demo.errores.ErrorServicio;
 import com.example.demo.repositorio.DeptoRepositorio;
 import com.example.demo.repositorio.PropiedadRepositorio;
 
 public class DeptoService {
-@Autowired
-private PropiedadRepositorio propiedadRepositorio;
+	@Autowired
+	private PropiedadRepositorio propiedadRepositorio;
 
-@Autowired
-private DeptoRepositorio departamentoRepositorio;
+	@Autowired
+	private DeptoRepositorio departamentoRepositorio;
 
+	@Transactional
+	public Depto CrearDepartamento(Boolean amoblado, Boolean esCompartido, Integer piso, Boolean patio,
+			Integer dormitorios, Integer ambientes, Boolean seguridad, Boolean mascotas, String idp)
+			throws ErrorServicio {
 
-	public Depto CrearDepartamento(Boolean amoblado, Boolean esCompartido, Integer piso, Boolean patio, Integer dormitorios, Integer ambientes, Boolean seguridad, Boolean mascotas, String idp) throws ErrorServicio {
-		
-		
-		
 		Validar(amoblado, esCompartido, piso, patio, dormitorios, ambientes, seguridad, mascotas, idp);
-		
+
 		Optional<Propiedad> respuesta = propiedadRepositorio.findById(idp);
-		
+
 		Depto departamento = new Depto();
-		
-		
-		
-		if(respuesta.isPresent()) {
-			
+
+		if (respuesta.isPresent()) {
+
 			Propiedad propiedad = respuesta.get();
-			
+
 			departamento.setZona(propiedad.getZona());
 			departamento.setDireccion(propiedad.getDireccion());
 			departamento.setSuperficie(propiedad.getSuperficie());
@@ -60,67 +57,70 @@ private DeptoRepositorio departamentoRepositorio;
 			departamento.setAmbientes(ambientes);
 			departamento.setSeguridad(seguridad);
 			departamento.setMascotas(mascotas);
-			
+
 			departamentoRepositorio.save(departamento);
 			return departamento;
-			
-		}else {
+
+		} else {
 			throw new ErrorServicio("No se encontro el departamento solicitado");
 		}
-		
-	
-		
+
 	}
-	
-	public void Validar(Boolean amoblado, Boolean esCompartido, Integer piso, Boolean patio, Integer dormitorios, Integer ambientes, Boolean seguridad, Boolean mascotas, String idp) throws ErrorServicio {
-		
+
+	public void Validar(Boolean amoblado, Boolean esCompartido, Integer piso, Boolean patio, Integer dormitorios,
+			Integer ambientes, Boolean seguridad, Boolean mascotas, String idp) throws ErrorServicio {
+
 		if (amoblado == null) {
 			throw new ErrorServicio("Amoblado no puede ser null");
 		}
-		
+
 		if (esCompartido == null) {
 			throw new ErrorServicio("esCompartido no puede ser null");
 		}
-		
+
 		if (piso == null) {
 			throw new ErrorServicio("Piso no puede ser null");
 		}
-		
+
 		if (patio == null) {
 			throw new ErrorServicio("Patio no puede ser null");
 		}
-		
+
 		if (dormitorios == null) {
 			throw new ErrorServicio("Dormitorios no puede ser null");
 		}
-		
+
 		if (ambientes == null) {
 			throw new ErrorServicio("Ambientes no puede ser null");
 		}
-		
+
 		if (seguridad == null) {
 			throw new ErrorServicio("Seguridad no puede ser null");
 		}
-		
+
 		if (mascotas == null) {
 			throw new ErrorServicio("Mascotas no puede ser null");
 		}
-		
+
 		if (idp == null) {
 			throw new ErrorServicio("idPropiedad no puede ser null");
 		}
-		
+
 	}
-	
-	public void ModificarDepartamento(String id, String zona, String direccion, Double superficie, Integer banios, Boolean estacionamiento, Double precio, Date disponibilidadInicio, Date disponibilidadFinal, Double expensas, Integer plantas, Integer antiguedad, Boolean alquiler, Boolean venta, Boolean amoblado, Boolean esCompartido, Integer piso, Boolean patio, Integer dormitorios, Integer ambientes, Boolean seguridad, Boolean mascotas) throws ErrorServicio{
-		
+
+	@Transactional
+	public void ModificarDepartamento(String id, String zona, String direccion, Double superficie, Integer banios,
+			Boolean estacionamiento, Double precio, Date disponibilidadInicio, Date disponibilidadFinal,
+			Double expensas, Integer plantas, Integer antiguedad, Boolean alquiler, Boolean venta, Boolean amoblado,
+			Boolean esCompartido, Integer piso, Boolean patio, Integer dormitorios, Integer ambientes,
+			Boolean seguridad, Boolean mascotas) throws ErrorServicio {
+
 		Optional<Depto> respuesta = departamentoRepositorio.findById(id);
-		
-		
-		if(respuesta.isPresent()) {
-			
+
+		if (respuesta.isPresent()) {
+
 			Depto departamento = respuesta.get();
-			
+
 			departamento.setZona(zona);
 			departamento.setDireccion(direccion);
 			departamento.setSuperficie(superficie);
@@ -142,36 +142,34 @@ private DeptoRepositorio departamentoRepositorio;
 			departamento.setAmbientes(ambientes);
 			departamento.setSeguridad(seguridad);
 			departamento.setMascotas(mascotas);
-			
+
 			departamentoRepositorio.save(departamento);
-			
-		}else {
+
+		} else {
 			throw new ErrorServicio("No se encontro el departamento solicitado");
 		}
-		
+
 	}
 
-public void EliminarDepartamento(String id) throws ErrorServicio{
-		
+	public void EliminarDepartamento(String id) throws ErrorServicio {
+
 		Optional<Depto> respuesta = departamentoRepositorio.findById(id);
-		
-		if(respuesta.isPresent()) {
-			
+
+		if (respuesta.isPresent()) {
+
 			Depto departamento = respuesta.get();
-			
+
 			departamentoRepositorio.delete(departamento);
-			
-		}else {
+
+		} else {
 			throw new ErrorServicio("No se encontro el departamento solicitado");
 		}
 	}
-	
-@Transactional
-public List<Depto> listarDepto() {
-	return departamentoRepositorio.findAll(); 
-	
-	
-	
-}
+
+	@Transactional
+	public List<Depto> listarDepto() {
+		return departamentoRepositorio.findAll();
+
+	}
 
 }

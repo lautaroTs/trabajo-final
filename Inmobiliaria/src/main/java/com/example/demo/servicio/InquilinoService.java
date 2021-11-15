@@ -27,6 +27,7 @@ public class InquilinoService {
 	@Autowired
 	private PropiedadRepositorio propiedadRepositorio;
 
+	@Transactional
 	public Inquilino CrearInquilino(Integer dni, String idu, String idp) throws ErrorServicio {
 
 		Validar(dni, idu, idp);
@@ -72,6 +73,7 @@ public class InquilinoService {
 		}
 	}
 
+	@Transactional
 	public void ModificarInquilino(String id, String nombre, String apellido, String contrasenia, String email,
 			Integer dni, String idp) throws ErrorServicio {
 
