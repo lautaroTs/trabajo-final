@@ -5,19 +5,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.servicio.InquilinoService;
 import com.example.demo.servicio.LocalService;
 
 @Controller
-@RequestMapping("/local") 
+@RequestMapping("/local")
 public class PortalLocal {
-	
+
 	@Autowired
 	private LocalService localdepto;
-	
+
 	@GetMapping("")
 	public String local() {
 		return "inquilino.html";
-}
+	}
 
 }
