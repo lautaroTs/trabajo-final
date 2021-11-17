@@ -115,7 +115,10 @@ public class InquilinoService {
 	@Transactional
 	public List<Inquilino> listarInqulino() {
 		return inquilinoRepositorio.findAll();
-
+	}
+	
+	public Inquilino findById(String id) {
+		return inquilinoRepositorio.findById(id).get();	 
 	}
 
 }
