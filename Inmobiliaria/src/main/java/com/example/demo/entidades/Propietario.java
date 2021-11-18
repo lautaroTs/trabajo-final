@@ -1,5 +1,7 @@
 package com.example.demo.entidades;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -8,16 +10,17 @@ public class Propietario extends Usuario {
 
 	protected Integer dni;
 	protected String direccion;
-	protected Propiedad propiedad;
+
+	protected List<Propiedad> propiedades;
 
 	@ManyToOne
 	protected Administracion administracion;
 
-	public Propietario(Integer dni, String direccion, Propiedad propiedad, Administracion administracion) {
+	public Propietario(Integer dni, String direccion, Administracion administracion) {
 		super();
 		this.dni = dni;
 		this.direccion = direccion;
-		this.propiedad = propiedad;
+
 		this.administracion = administracion;
 	}
 
@@ -40,13 +43,4 @@ public class Propietario extends Usuario {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-
-	public Propiedad getPropiedad() {
-		return propiedad;
-	}
-
-	public void setPropiedad(Propiedad propiedad) {
-		this.propiedad = propiedad;
-	}
-
 }

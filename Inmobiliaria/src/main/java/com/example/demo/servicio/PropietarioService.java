@@ -48,7 +48,7 @@ public class PropietarioService {
 			propietario.setNivelAcceso(3);
 			propietario.setDni(dni);
 			propietario.setDireccion(direccion);
-			propietario.setPropiedad(propiedadRepositorio.findById(idp).get());
+//			TOFIX propietario.setPropiedad(propiedadRepositorio.findById(idp).get());
 
 			propietarioRepositorio.save(propietario);
 			return propietario;
@@ -95,7 +95,7 @@ public class PropietarioService {
 			propietario.setContrasenia(contrasenia);
 			propietario.setDni(dni);
 			propietario.setDireccion(direccion);
-			propietario.setPropiedad(propiedad);
+//			TOFIX propietario.setPropiedad(propiedad);
 
 			propietarioRepositorio.save(propietario);
 		} else {
