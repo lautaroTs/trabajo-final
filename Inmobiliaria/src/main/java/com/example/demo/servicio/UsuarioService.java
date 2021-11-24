@@ -106,15 +106,38 @@ public class UsuarioService implements UserDetailsService {
 
 	}
 
-	public Usuario findUserByEmail(String email, String contrasenia) {
-		Optional<Usuario> respuesta = usuarioRepositorio.findByEmail();
-
+	@Transactional
+	public Usuario findUserByEmail(String email, String contrasenia) throws ErrorServicio {
+		Optional<Usuario> respuesta = usuarioRepositorio.findByEmail(email);
 		if (respuesta.isPresent()) {
-			
 			Usuario usuario = respuesta.get();
-			return usuario;
-		}else {
+			return validarUsuario(usuario, contrasenia);
+		} else {
 			throw new ErrorServicio("No existe el usuario.");
 		}
+	}
+	
+	private Usuario validarUsuario(Usuario usuario, String contrasenia) throws ErrorServicio {
+		if (usuario.getContrasenia().equals(contrasenia)) {
+			return usuario;
+		}else {
+			throw new ErrorServicio("Contraseña incorrecta");
+		}
+	}
+	
+	public Boolean esPropietario (Usuario usuario) throws ErrorServicio {
+		PropietarioService propietarioService = new PropietarioService();
+		if (propietarioService.esPropietario(usuario)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public Boolean esInquilino (Usuario usuario) throws ErrorServicio {
+		InquilinoService inquilinoService = new InquilinoService();
+		if (inquilinoService.esInquilino(usuario)) {
+			return true;
+		}
+		return false;
 	}
 }

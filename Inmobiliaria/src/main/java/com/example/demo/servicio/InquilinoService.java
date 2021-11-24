@@ -77,48 +77,48 @@ public class InquilinoService {
 	public void ModificarInquilino(String id, String nombre, String apellido, String contrasenia, String email,
 			Integer dni, String idp) throws ErrorServicio {
 
-		Optional<Inquilino> respuesta = inquilinoRepositorio.findById(id);
 		Propiedad propiedad = propiedadRepositorio.getById(idp);
 
-		if (respuesta.isPresent()) {
+		Inquilino inquilino = findById(id);
 
-			Inquilino inquilino = respuesta.get();
+		inquilino.setNombre(nombre);
+		inquilino.setApellido(apellido);
+		inquilino.setEmail(email);
+		inquilino.setContrasenia(contrasenia);
+		inquilino.setDni(dni);
+		inquilino.setPropiedad(propiedad);
 
-			inquilino.setNombre(nombre);
-			inquilino.setApellido(apellido);
-			inquilino.setEmail(email);
-			inquilino.setContrasenia(contrasenia);
-			inquilino.setDni(dni);
-			inquilino.setPropiedad(propiedad);
+		inquilinoRepositorio.save(inquilino);
 
-			inquilinoRepositorio.save(inquilino);
-		} else {
-			throw new ErrorServicio("No se encontro el inquilino solicitado");
-		}
 	}
 
 	public void EliminarInquilino(String id) throws ErrorServicio {
-
-		Optional<Inquilino> respuesta = inquilinoRepositorio.findById(id);
-
-		if (respuesta.isPresent()) {
-
-			Inquilino inquilino = respuesta.get();
-
-			inquilinoRepositorio.delete(inquilino);
-
-		} else {
-			throw new ErrorServicio("No se encontro el inquilino solicitado");
-		}
+		inquilinoRepositorio.delete(findById(id));
 	}
 
 	@Transactional
 	public List<Inquilino> listarInqulino() {
 		return inquilinoRepositorio.findAll();
 	}
-	
-	public Inquilino findById(String id) {
-		return inquilinoRepositorio.findById(id).get();	 
+
+	@Transactional
+	public Inquilino findById(String id) throws ErrorServicio {
+		Optional<Inquilino> respuesta = inquilinoRepositorio.findById(id);
+		if (respuesta.isPresent()) {
+			Inquilino inquilino = respuesta.get();
+			return inquilino;
+		} else {
+			throw new ErrorServicio("No se encontro el inquilino solicitado");
+		}
 	}
 
+	public Boolean esInquilino(Usuario usuario) throws ErrorServicio {
+		Inquilino inquilino = new Inquilino();
+		inquilino = findById(usuario.getId());
+		if (!inquilino.getId().isEmpty()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

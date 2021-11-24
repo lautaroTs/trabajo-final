@@ -7,11 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.entidades.Propiedad;
 import com.example.demo.entidades.Propietario;
 import com.example.demo.entidades.Usuario;
 import com.example.demo.errores.ErrorServicio;
-import com.example.demo.repositorio.PropiedadRepositorio;
 import com.example.demo.repositorio.PropietarioRepositorio;
 import com.example.demo.repositorio.UsuarioRepositorio;
 
@@ -24,8 +22,8 @@ public class PropietarioService {
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
 
-	@Autowired
-	private PropiedadRepositorio propiedadRepositorio;
+//	@Autowired
+//	private PropiedadRepositorio propiedadRepositorio;
 
 	@Transactional
 	public Propietario CrearPropietario(Integer dni, String direccion, String idu, String idp) throws ErrorServicio {
@@ -80,14 +78,10 @@ public class PropietarioService {
 
 	@Transactional
 	public void ModificarPropietario(String id, String nombre, String apellido, String contrasenia, String email,
-			Integer dni, String direccion, String idp) throws ErrorServicio {
+			Integer dni, String direccion) throws ErrorServicio {
+//		Propiedad propiedad = propiedadRepositorio.getById(idp);
 
-		Optional<Propietario> respuesta = propietarioRepositorio.findById(id);
-		Propiedad propiedad = propiedadRepositorio.getById(idp);
-
-		if (respuesta.isPresent()) {
-
-			Propietario propietario = respuesta.get();
+			Propietario propietario = findById(id);
 
 			propietario.setNombre(nombre);
 			propietario.setApellido(apellido);
@@ -98,28 +92,37 @@ public class PropietarioService {
 //			TOFIX propietario.setPropiedad(propiedad);
 
 			propietarioRepositorio.save(propietario);
-		} else {
-			throw new ErrorServicio("No se encontro el propietario solicitado");
-		}
+		
 	}
 
 	public void EliminarPropietario(String id) throws ErrorServicio {
-		Optional<Propietario> respuesta = propietarioRepositorio.findById(id);
-
-		if (respuesta.isPresent()) {
-
-			Propietario propietario = respuesta.get();
-
-			propietarioRepositorio.delete(propietario);
-
-		} else {
-			throw new ErrorServicio("No se encontro el propietario solicitado");
-		}
+			propietarioRepositorio.delete(findById(id));
 	}
 
 	@Transactional
 	public List<Propietario> listarPropietario() {
 		return propietarioRepositorio.findAll();
 
+	}
+
+	@Transactional
+	public Propietario findById(String id) throws ErrorServicio {
+		Optional<Propietario> respuesta = propietarioRepositorio.findById(id);
+		if (respuesta.isPresent()) {
+			Propietario propietario = respuesta.get();
+			return propietario;
+		} else {
+			throw new ErrorServicio("No se encontro el propietario solicitado");
+		}
+	}
+
+	public Boolean esPropietario (Usuario usuario) throws ErrorServicio {
+		Propietario propietario = new Propietario();
+		propietario = findById(usuario.getId());
+		if (!propietario.getId().isEmpty()) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 }
