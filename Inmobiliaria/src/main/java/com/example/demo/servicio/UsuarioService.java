@@ -105,4 +105,16 @@ public class UsuarioService implements UserDetailsService {
 		return usuarioRepositorio.findAll();
 
 	}
+
+	public Usuario findUserByEmail(String email, String contrasenia) {
+		Optional<Usuario> respuesta = usuarioRepositorio.findByEmail();
+
+		if (respuesta.isPresent()) {
+			
+			Usuario usuario = respuesta.get();
+			return usuario;
+		}else {
+			throw new ErrorServicio("No existe el usuario.");
+		}
+	}
 }
