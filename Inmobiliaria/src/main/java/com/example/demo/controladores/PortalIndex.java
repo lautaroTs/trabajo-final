@@ -2,13 +2,17 @@ package com.example.demo.controladores;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entidades.Propietario;
 import com.example.demo.entidades.Usuario;
 import com.example.demo.errores.ErrorServicio;
+import com.example.demo.servicio.InquilinoService;
+import com.example.demo.servicio.PropietarioService;
 import com.example.demo.servicio.UsuarioService;
 
 @Controller
@@ -39,11 +43,18 @@ public class PortalIndex {
 	}
 	
 	@PostMapping("/login")
-	public String loginForm(@RequestParam String email, @RequestParam String contrasenia ) throws ErrorServicio{
+	public String loginForm(@RequestParam String email, @RequestParam String contrasenia, Model model ) throws ErrorServicio{
+	
 		Usuario usuario = usuarioService.findUserByEmail(email, contrasenia);
 		if (usuarioService.esPropietario(usuario)) {
+			PropietarioService propietarioSvc = new PropietarioService();
+			
+			model.addAttribute("propietario", propietarioSvc.findById(usuario.getId()));
 			return "05-propietario.html";
 		} else if (usuarioService.esInquilino(usuario)) {
+			InquilinoService inquilinoSvc = new InquilinoService();
+			model.addAttribute("inquilino", inquilinoSvc.findById(usuario.getId()));
+			
 			return "06-inquilino.html";
 		} else {
 		return " ";

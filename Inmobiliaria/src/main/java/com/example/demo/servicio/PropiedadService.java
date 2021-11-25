@@ -173,4 +173,20 @@ public class PropiedadService {
 
 	}
 
+	public Propiedad buscarPropiedadId(String id) throws ErrorServicio {
+
+		Optional<Propiedad> respuesta = propiedadRepositorio.findById(id);
+
+		if (respuesta.isPresent()) {
+
+			Propiedad propiedad = respuesta.get();
+
+			return propiedad;
+
+		} else {
+			throw new ErrorServicio("No se encontro la propiedad solicitada");
+		}
+	}
+	
+	
 }
