@@ -12,7 +12,7 @@ import com.example.demo.servicio.LocalService;
 public class PortalLocal {
 
 	@Autowired
-	private LocalService localdepto;
+	private LocalService local;
 
 	@GetMapping("")
 	public String local() {

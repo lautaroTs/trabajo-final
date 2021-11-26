@@ -18,12 +18,12 @@ import com.example.demo.servicio.UsuarioService;
 public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	@Qualifier("clienteServicio")
-	public UsuarioService usuarioServicio;
+	@Qualifier("usuarioService")
+	public UsuarioService usuarioService;
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(usuarioServicio).passwordEncoder(new BCryptPasswordEncoder());
+		auth.userDetailsService(usuarioService).passwordEncoder(new BCryptPasswordEncoder());
 	}
 
 	@Override

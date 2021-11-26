@@ -16,7 +16,7 @@ import com.example.demo.servicio.DeptoService;
 @RequestMapping("/depto") 
 public class PortalDepto {
 
-	@Autowired
+	@Autowired (required = true)
 	private DeptoService deptoService;
 	
 	@GetMapping("/crearDepartamento")
@@ -36,7 +36,7 @@ public class PortalDepto {
 			return "departamento.html";
 		}
 		
-		return "index.html";
+		return "index";
 	}
 	
 	

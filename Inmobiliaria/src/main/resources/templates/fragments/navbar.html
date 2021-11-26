@@ -1,17 +1,14 @@
-<header>
-        <a th:href="@{}" ><img src="img/logo.png" alt="" style="width: 10%; height: auto;"></a>
-</header>
 
 <nav th:fragment="nav_bar">
-		<a th:href="@{}"><img src="img/logo.png" alt="" style="width: 10%; height: auto;"></a>
+		<a th:href="@{/}"><img src="img/logo.png" alt="" style="width: 10%; height: auto;"></a>
 			<div class="row" style="width: 100%">
 				<div class="row" style="width: 100%">
 		            <div class="col" style="text-align: center;">
-		              <a href="02-registroUsuario.html" style="padding: 5px">Â¿Sos Propietario? registrate</a>
-		              <a href="02-registroUsuario.html" style="padding: 5px">Â¿Queres comprar o alquilar?</a>
-		              <a href="01-quienesSomos.html" style="padding: 5px">Nosotros</a>
-		              <a href="10-NuestrosServicios.html" style="padding: 5px">Nuestros Servicios</a>
-		              <a href="04-login.html" style="padding: 5px">Usuario Registrado</a>
+		              <a th:href="@{/usuario/registro}" style="padding: 5px"> ¿Sos Propietario? registrate</a>
+		              <a href="02-registroUsuario.html" style="padding: 5px"> ¿Queres comprar o alquilar?</a>
+		              <a href="01-quienesSomos.html" style="padding: 5px"> Nosotros</a>
+		              <a href="10-NuestrosServicios.html" style="padding: 5px"> Nuestros Servicios</a>
+		              <a href="04-login.html" style="padding: 5px"> Usuario Registrado</a>
 		            </div>
 				</div>
 			</div>

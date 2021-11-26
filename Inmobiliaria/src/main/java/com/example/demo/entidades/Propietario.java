@@ -1,7 +1,5 @@
 package com.example.demo.entidades;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -11,7 +9,7 @@ public class Propietario extends Usuario {
 	protected Integer dni;
 	protected String direccion;
 
-	protected List<Propiedad> propiedades;
+	
 
 	@ManyToOne
 	protected Administracion administracion;

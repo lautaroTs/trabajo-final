@@ -16,13 +16,13 @@ import com.example.demo.servicio.PropietarioService;
 import com.example.demo.servicio.UsuarioService;
 
 @Controller
-@RequestMapping("") 
+@RequestMapping("/") 
 public class PortalIndex {
 
 	@Autowired
 	UsuarioService usuarioService;
 	
-	@GetMapping("")
+	@GetMapping("/")
 	public String inicio() {
 		return "00-index";
 	}

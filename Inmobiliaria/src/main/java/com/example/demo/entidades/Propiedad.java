@@ -27,17 +27,22 @@ public class Propiedad {
 	protected Integer banios;
 	protected Boolean estacionamiento;
 	protected Double precio;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	protected Date disponibilidadInicio;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	protected Date disponibilidadFinal;
+	
 	protected Double expensas;
 	protected Integer plantas;
 	protected Integer antiguedad;
 	protected Boolean alquiler;
 	protected Boolean venta;
+	
 	@ManyToOne
 	protected Propietario propietario;
+	
 	public String getId() {
 		return id;
 	}
