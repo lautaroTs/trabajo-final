@@ -15,9 +15,13 @@ public class PortalUsuario {
 	UsuarioService usuarioService;
 	
 	
-	@GetMapping("/registro")
+	@GetMapping("/registroP")
 	public String registroUsuario() {
-		return "02-registroUsuario.html";
+		return "02A-registroUsuarioP.html";
+	}
+	@GetMapping("/registroI")
+	public String registroUsuarioI() {
+		return "02-registroUsuarioI.html";
 	}
 	
 }

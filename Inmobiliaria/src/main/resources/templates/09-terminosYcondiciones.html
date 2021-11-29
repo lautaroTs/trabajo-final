@@ -15,53 +15,10 @@
 
 <body style="margin: 30px;">
     <header>
-        <nav>
-            <a th:href="@{}" ><img src="img/logo.png" alt="" style="width: 10%; height: auto;"></a>
-            <nav>
-              <div class="row" style="width: 100%">
-                <div class="col" style="text-align: center;">
-                  <a href="02-registroUsuario.html" style="padding: 5px">¿Sos Propietario? registrate</a>
-                  <a href="02-registroUsuario.html" style="padding: 5px">¿Queres comprar o alquilar?</a>
-                  <a href="01-quienesSomos.html" style="padding: 5px">Nosotros</a>
-                  <a href="10-NuestrosServicios.html" style="padding: 5px">Nuestros Servicios</a>
-                  <a href="04-login.html" style="padding: 5px">Usuario Registrado</a>
-                </div>
-                
-              </div>
-            </nav><br><br>
-       <br><br>
-            <form action="08-respuestaBusqueda.html" class="formaction" style="width: 100%; text-align: center; 
-            border-style: solid; border-color: #E6E6FA; padding: 5px;">
-              <div class="row">
-                  <div class="col-md-3">
-                      <label for="busqueda">Buscar</label>
-                      <input type="search" id="busqueda" placeholder="Buscar por zona"/>
-                  </div>
-                  <div class="col-md-3">
-                      <label for="Tipo Prop">Tipo de Propiedad</label>
-                      <select name="" id="propiedad" >
-                        <option value=""></option>
-                        <option value="Casa">Casa</option>
-                        <option value="Departamento">Departamento</option>
-                        <option value="Local Comercial">Local Comercial</option>
-                      </select>
-                  </div>
-                  <div class="col-md-3">
-                      <label for="tipo de operacion">Tipo de operacion</label>
-                      <select name="tipo de operacion" id="operacion">
-                        <option value="Alquiler">Alquiler</option>
-                        <option value="Venta">Venta</option>
-                        <option value="Alq/venta">Alquiler o venta</option>
-                      </select>
-                  </div>
-                  <div class="col-md-3">
-                        <input type="submit"  value="buscar" />
-                  </div>
-                </div>
-            </form>
-       
-       
-          </nav>
+        <header>
+		      <div th:replace="fragments/navbar.html :: nav_bar"></div>
+		      <div th:replace="fragments/buscador.html :: nav_buscador"></div>
+    </header><br>
       
     </header>
     <br>
@@ -87,7 +44,7 @@
         Vestibulum varius commodo eros sed convallis. Maecenas porta accumsan dui id imperdiet. Nam sit amet elit pellentesque, porta justo at, facilisis nisl. Vivamus aliquet luctus velit tempus ornare. Nullam vel elit vitae erat eleifend ornare. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque tempor, elit ac sagittis convallis, est velit sollicitudin nulla, ac volutpat mauris est ac erat. Nam vel sagittis nibh. Sed sed volutpat dui, eget vulputate purus. In blandit tellus ut arcu volutpat hendrerit. Donec at lacus sed erat molestie iaculis eu a dui. Nulla auctor, augue eu laoreet pretium, neque dolor rutrum mi, et rhoncus lorem augue quis dolor. Nam in porta libero.
         
         Sed tempus sapien a lectus pulvinar maximus. Pellentesque neque leo, viverra nec posuere a, tempus in nulla. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec non ex arcu. Ut condimentum ut ante vitae aliquet. Fusce eget vehicula lectus. In hac habitasse platea dictumst. Suspendisse scelerisque arcu eget consequat ornare. In sit amet pharetra metus, in volutpat urna. Fusce eu lectus varius, finibus libero non, dictum lorem. Mauris scelerisque condimentum nibh eget scelerisque. Maecenas vitae nibh vulputate, rutrum metus quis, cursus libero. Nunc scelerisque, lacus id convallis gravida, lacus ipsum gravida quam, eget euismod mi neque vel nulla. Fusce diam quam, faucibus ac congue eget, congue faucibus lectus. Sed at risus ut neque elementum pellentesque eu et dui. Proin ut vestibulum neque.</p>
-<a href="registroPropietario.html">Volver a registro de Propietario</a>
+<a th:href="@{/usuario/registroP}">Volver a registro de Propietario</a>
 
 <footer>
     <div class="row">
