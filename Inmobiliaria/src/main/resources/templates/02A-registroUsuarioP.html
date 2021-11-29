@@ -15,13 +15,19 @@
 </head>
 
 <body style="margin: 30px;">
+
+<header>
+     
+      <div th:replace="fragments/navbar :: nav_bar"></div>
+          
+    
+</header>
 	
 	<br>
-	<h1>Registro de Usuario</h1>
+	<h1>Registro de Usuario PROPIETARIO</h1>
 	<br>
 	<section>
-		<form action="" class="formaction"
-			method="POST">
+		<form action="" class="formaction" method="POST">
 			<div class="row">
 				<div class="col"></div>
 				<div class="col">
@@ -48,25 +54,13 @@
 						type="password" name="password" id="password" required><br>
 				</div>
 				<div class="col"></div>
-			</div>
+			</div><br>
 			<div class="row">
-				<div class="col"></div>
-				<div class="col">
-					<label for="tipo de usuario">registrarme como: </label><br> <select
-						name="tipo de usuario" id="tipo de usuario" class="form-select"
-						required>
-						<option value="1"></option>
-						<option value="2">Propietario: Quiero publicar mi
-							propiedad</option>
-						<option value="3">No propietario: Quiero alquilar o
-							comprar una propiedad</option>
-					</select>
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<input type="submit" formaction="index.html" name="" id="submit">
 				</div>
-				<div class="col">
-					<br> <input type="submit" formaction="index.html" name=""
-						id="submit">
-				</div>
-				<div class="col"></div>
+				<div class="col-md-2"></div>
 			</div>
 
 		</form>
@@ -115,74 +109,3 @@
 	</footer>
 
 
-
-
-
-
-
-	<!-- <div class="col-md-6">
-      
-      <form action="">
-        <label for="Nombre">Ingrese su nombre</label><br>
-        <input type="text" name="Nombre" id="Nombre" required/ ><br>
-  
-        <label for="apellido">Ingrese su apellido</label><br>
-        <input type="text" name="Apellido" id="apellido" required/><br>
-    </div>
-  </div>
-
-
-
-
-<div class="row">
-    <div class="col-md-4">
-      <form action="" class="col">
-        <label for="Nombre">Ingrese su nombre</label><br>
-        <input type="text" name="Nombre" id="Nombre" required/ ><br>
-  
-        <label for="apellido">Ingrese su apellido</label><br>
-        <input type="text" name="Apellido" id="apellido" required/><br>
-  
-        <label for="email">Ingrese su email</label><br>
-        <input type="email" name="email" id="email" required/><br>
-      </form>
-    </div>
-</div>
-
-
-   
-    <form action="" class="col" method="post">
-      <label for="Nombre">Ingrese su nombre</label><br>
-      <input type="text" name="Nombre" id="Nombre" required/ ><br>
-
-      <label for="apellido">Ingrese su apellido</label><br>
-      <input type="text" name="Apellido" id="apellido" required/><br>
-
-      <label for="email">Ingrese su email</label><br>
-      <input type="email" name="email" id="email" required/><br>
-
-      <label for="usuario">Ingrese su usuario</label><br />
-      <input type="text" placeholder="" name="usuer" id="usuario" required/><br>
-
-      <label for="password">Ingrese su password</label><br>
-      <input type="password" placeholder="Minimo 8 caracteres" name="password" id="password" minlength="8"/><br>
-
-
-
-
-
-      <label for="Direccion">Ingrese su domicilio</label><br>
-      <input type="text" name="Direccion" id="Direccion" /><br>
-
-      <label for="telefono">Ingrese su telefono</label><br>
-      <input type="tel" id="telefono" / required><br>
-
-      <label for="checkbox"><a href="terms.html">Acepto terminos y Condiciones</a></a></label><br>
-      <input type="checkbox" id="checkbox" required /><br>
-      
-      <label for="submit">Ingrese enviar para completar el registro</label><br>
-      <input type="submit" formaction="registroPropiedad.html" name="" id="submit" /><br>
-    </form>-->
-</body>
-
-</html>

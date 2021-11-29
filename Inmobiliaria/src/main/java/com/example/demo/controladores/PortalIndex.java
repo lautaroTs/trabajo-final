@@ -27,19 +27,23 @@ public class PortalIndex {
 		return "00-index";
 	}
 
-	@GetMapping("/QuienesSomos")
+	@GetMapping("/quienesSomos")
 	public String quienesSomos() { 
 		return "01-quienesSomos.html";
 	}
 	
-	@GetMapping("/RegistroUsuario")
-	public String registroUsuario() {
-		return "02-registroUsuario.html";
+	@GetMapping("/nuestrosServicios")
+	public String nuestrosServicios() {
+		return "10-nuestrosServicios.html";
 	}
 
 	@GetMapping("/login")
 	public String login() {
 		return "04-login.html";
+	}
+	@GetMapping("/recuperoContrasena")
+	public String recuperoDeContraseña() {
+		return "11-recuperoDeContraseña.html";
 	}
 	
 	@PostMapping("/login")
@@ -86,13 +90,7 @@ public class PortalIndex {
 		return "09-terminosYCondiciones.html";
 	}
 	
-	@GetMapping("/NuestrosServicios")
-	public String nuestrosServicios() {
-		return "10-nuestrosServicios.html";
-	}
 	
-	@GetMapping("/RecuperoDeContraseña")
-	public String recuperoDeContraseña() {
-		return "11-recuperoDeContraseña.html";
-	}
+	
+	
 }

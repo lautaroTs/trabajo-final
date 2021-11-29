@@ -12,13 +12,16 @@
 
 <body style="margin: 30px;">
   <header>
-    <a th:href="@{}"><img src="img/logo.png" alt="" style="width: 10%; height: auto;"></a>
-  </header>
+
+		      <div th:replace="fragments/navbar.html :: nav_bar"></div>
+		      <div th:replace="fragments/buscador.html :: nav_buscador"></div>
+   </header><br>
+  
   <br>
   <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-      <form th:action="@{/login}" class="formaction" method="POST">
+      <form action="" class="formaction" method="POST">
         <input type="email" name="email" id="" placeholder="Ingrese su Email" required>
         <input type="password" name="contrasenia" id="" placeholder="Ingrese su contraseña" required>
         <input type="submit" value="Ingresar">
@@ -30,7 +33,7 @@
   <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-      <a href="11-recuperoDeContraseña.html">Olvide mi contraseña</a>
+      <a th:href="@{/recuperoContrasena}">Olvide mi contraseña</a>
     </div>
     <div class="col-md-3"></div>
 

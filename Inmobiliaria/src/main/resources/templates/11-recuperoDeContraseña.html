@@ -14,9 +14,12 @@
 </head>
 
 <body style="margin: 30px;">
-    <header>
-        <a th:href="@{}" ><img src="img/logo.png" alt="" style="width: 10%; height: auto;"></a>
-    </header>
+
+        <header>
+		      <div th:replace="fragments/navbar.html :: nav_bar"></div>
+		      <div th:replace="fragments/buscador.html :: nav_buscador"></div>
+    </header><br>
+  
     <section>
         <div class="row">
             <div class="col-md-3"></div>
