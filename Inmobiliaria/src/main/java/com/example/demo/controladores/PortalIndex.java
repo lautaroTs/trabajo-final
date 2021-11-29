@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.entidades.Propietario;
 import com.example.demo.entidades.Usuario;
 import com.example.demo.errores.ErrorServicio;
 import com.example.demo.servicio.InquilinoService;

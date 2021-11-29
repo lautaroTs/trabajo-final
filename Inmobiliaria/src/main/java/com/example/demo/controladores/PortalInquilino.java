@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entidades.Inquilino;
+import com.example.demo.errores.ErrorServicio;
 import com.example.demo.servicio.InquilinoService;
 
 @Controller
@@ -23,7 +24,7 @@ public class PortalInquilino {
 	}
 	
 	@GetMapping("/encontrar")
-	public String listaInquilinos(ModelMap model, @RequestParam String id) {
+	public String listaInquilinos(ModelMap model, @RequestParam String id) throws ErrorServicio {
 		Inquilino inquilino = inquilinoService.findById(id);
 		model.addAttribute("inquilino", inquilino.getApellido()+ " " + inquilino.getNombre());
 		return "inquilino";
