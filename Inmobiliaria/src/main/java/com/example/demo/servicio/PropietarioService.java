@@ -56,6 +56,36 @@ public class PropietarioService {
 		}
 
 	}
+	
+	public Propietario crearPropietarioSinUsuario(String nombre, String apellido, String contrasenia, String email,
+			Integer dni, String direccion) throws ErrorServicio {
+		
+		try {
+		
+		Propietario propietario = new Propietario();
+		
+		Usuario usuario = new Usuario();
+
+		usuario.setNombre(nombre);
+		usuario.setApellido(apellido);
+		usuario.setContrasenia(contrasenia);
+		usuario.setEmail(email);
+		
+		usuarioRepositorio.save(usuario);
+		
+		propietario.setId(usuario.getId());
+		propietario.setNivelAcceso(3);
+		propietario.setDni(dni);;
+		propietario.setDireccion(direccion);
+
+		propietarioRepositorio.save(propietario);
+		
+		return propietario;
+		
+		}catch(Exception e) {
+			throw new ErrorServicio("error creando propietario");
+		}
+	}
 
 	public void Validar(Integer dni, String direccion, String idu, String idp) throws ErrorServicio {
 
