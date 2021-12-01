@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.errores.ErrorServicio;
 import com.example.demo.servicio.PropietarioService;
 
 @Controller
@@ -22,10 +23,11 @@ public class PortalPropietario {
 			@RequestParam String nombre, 
 			@RequestParam String apellido, 
 			@RequestParam String email, 
-			@RequestParam String password) {
+			@RequestParam String password,
+			@RequestParam Integer dni) throws ErrorServicio {
 		
 		
-		model.addAttribute(propietarioService.CrearPropietario(null, password, apellido, apellido));
+		model.addAttribute(propietarioService.crearPropietarioSinUsuario(nombre, apellido, apellido, email, dni, password));
 		
 		return "05-propietario";
 	}
