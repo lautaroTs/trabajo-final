@@ -64,16 +64,13 @@ public class PropietarioService {
 		
 		Propietario propietario = new Propietario();
 		
-		Usuario usuario = new Usuario();
+		
 
-		usuario.setNombre(nombre);
-		usuario.setApellido(apellido);
-		usuario.setContrasenia(contrasenia);
-		usuario.setEmail(email);
+		propietario.setNombre(nombre);
+		propietario.setApellido(apellido);
+		propietario.setContrasenia(contrasenia);
+		propietario.setEmail(email);
 		
-		usuarioRepositorio.save(usuario);
-		
-		propietario.setId(usuario.getId());
 		propietario.setNivelAcceso(3);
 		propietario.setDni(dni);;
 		propietario.setDireccion(direccion);
