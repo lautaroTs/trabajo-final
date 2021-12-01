@@ -1,62 +1,71 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"/>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous" />
 
 </head>
 <body style="margin: 30px;">
-    <header>
-        <div th:replace ="nav_bar"></div>
-    </header>
-    <section>
-        <h1>Bienvenido</h1>
-        <h2 th:text="${propietario.nombre} + ' ' + ${propietario.apellido}"></h2>        
+	<header>
+		<div th:replace="fragments/navbar :: nav_bar"></div>
+	</header>
+	<section>
+		<h1 th:object="${propietario}">Bienvenido</h1>
+		<h2
+			th:value="${propietario.nombre}"></h2>  
+         
     </section>
     <div>
     	<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Foto</th>
-      <th scope="col">Casa / Depto</th>
-      <th scope="col">Direccion</th>
-      <th scope="col">Dormitorios</th>
-      <th scope="col">Acciones</th>
-      <th scope="col" type="hidden">Id</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td><img>imagen</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>Mark</td>
-     <td><button type="button" class="btn btn-warning" th:href="@{/propiedad/modificar/__${propiedad.id}__}">Editar</button> 
-      <button type="button" class="btn btn-danger" th:href="@{/propiedad/eliminar/__${propiedad.id}__}">Eliminar</button></td>
-      <td type="hidden">id</td>
-    </tr>
-    
-  </tbody>
-</table>
-<div class="row">
-	<div class="col-md-8"></div>
-	<div class="col-md-4">
-		<a class="btn btn-primary" href="07-registroPropiedad.html" role="button">Ingresar Nueva Propiedad</a>
-	</div>
-	
+			<thead>
+				<tr>
+					<th scope="col">zona</th>
+					<th scope="col">Direccion</th>
+					<th scope="col">superficie</th>
+					<th scope="col">Acciones</th>
+					<th scope="col" type="hidden">Id</th>
+				</tr>
+			</thead>
 
-</div>
-    
-    
-    
-    </div>
-    <hr/>
+			<tbody>
+				<tr th: each="propiedad : ${propiedad}">
+					<td th: text="${propiedad.zona}"></td>
+					<td th: text="${propiedad.direccion}"></td>
+					<td th: text="${propiedad.superficie}"></td>
+					<td th: text="${propiedad.estacionamiento}"></td>
+					<td th: text="${propiedad.precio}"></td>
+					<td><button type="button" class="btn btn-warning"
+							th:href="@{/propiedad/modificar/__${propiedad.id}__}">Editar</button>
+						<button type="button" class="btn btn-danger"
+							th:href="@{/propiedad/eliminar/__${propiedad.id}__}">Eliminar</button></td>
+					<td type="hidden">id</td>
+				</tr>
 
-    <div th:replace="footer"></div>
+			</tbody>
+			</table>
+			<div class="row">
+				<div class="col-md-8"></div>
+				<div class="col-md-4">
+					<a class="btn btn-primary" href="07-registroPropiedad.html"
+						role="button">Ingresar Nueva Propiedad</a>
+				</div>
+
+
+			</div>
+
+
+
+			</div>
+			<hr />
+
+			<div th:replace="footer"></div>
 </body>
 </html>

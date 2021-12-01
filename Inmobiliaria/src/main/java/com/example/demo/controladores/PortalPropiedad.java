@@ -1,6 +1,7 @@
 package com.example.demo.controladores;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -94,4 +95,15 @@ public class PortalPropiedad {
 		return "index.html";
 	}
 
+	@GetMapping("/creaP")	
+	public String creaPropiedades(Model model, @PathVariable String id) throws ErrorServicio {
+		Propiedad propiedad = propiedadService.buscarPropiedadId(id);
+		model.addAttribute("propiedad", propiedad);
+		return "/05-propietario";
+	}
+	
+	
+	
+	
+	
 }
