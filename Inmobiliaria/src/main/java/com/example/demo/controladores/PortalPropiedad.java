@@ -50,7 +50,7 @@ public class PortalPropiedad {
 
 	@GetMapping("/modificar/{id}")
 	public String modificarPropiedad(Model model, @PathVariable String id) throws ErrorServicio {
-		
+
 		Propiedad prop = propiedadService.buscarPropiedadId(id);
 		model.addAttribute("propiedad", prop);
 		return "07-registroPropiedad.html";
@@ -95,15 +95,11 @@ public class PortalPropiedad {
 		return "index.html";
 	}
 
-	@GetMapping("/creaP")	
+	@GetMapping("/creaP")
 	public String creaPropiedades(Model model, @PathVariable String id) throws ErrorServicio {
 		Propiedad propiedad = propiedadService.buscarPropiedadId(id);
 		model.addAttribute("propiedad", propiedad);
 		return "/05-propietario";
 	}
-	
-	
-	
-	
-	
+
 }

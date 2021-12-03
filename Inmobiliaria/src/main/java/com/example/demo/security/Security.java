@@ -12,35 +12,20 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.example.demo.servicio.UsuarioService;
 
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class Security extends WebSecurityConfigurerAdapter {
 
-   
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers("/admin/*").hasRole("ADMIN")
-                .antMatchers("/css/*", "/js/*", "/img/*",
-                        "/**").permitAll()
-                .and().
-                formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/logincheck")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/inicio")
-                .permitAll()
-                .and().logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login?logout")             
-                .permitAll().
-                and().csrf().disable();
-    }
-    
-    @Autowired
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests().antMatchers("/admin/*").hasRole("ADMIN")
+				.antMatchers("/css/*", "/js/*", "/img/*", "/**").permitAll().and().formLogin().loginPage("/login")
+				.loginProcessingUrl("/logincheck").usernameParameter("username").passwordParameter("password")
+				.defaultSuccessUrl("/inicio").permitAll().and().logout().logoutUrl("/logout")
+				.logoutSuccessUrl("/login?logout").permitAll().and().csrf().disable();
+	}
+
+	@Autowired
 	@Qualifier("usuarioService")
 	public UsuarioService usuarioService;
 

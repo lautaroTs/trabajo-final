@@ -11,6 +11,6 @@ import com.example.demo.entidades.Propietario;
 @Repository
 public interface PropietarioRepositorio extends JpaRepository<Propietario, String> {
 
-	@Query(value= "SELECT a FROM Propietario a")
-	List<Propietario>findAllpropietarios();
+	@Query(value = "SELECT a FROM Propietario a")
+	List<Propietario> findAllpropietarios();
 }

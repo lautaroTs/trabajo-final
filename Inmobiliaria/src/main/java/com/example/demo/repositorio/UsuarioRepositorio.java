@@ -13,9 +13,9 @@ import com.example.demo.entidades.Usuario;
 @Repository
 public interface UsuarioRepositorio extends JpaRepository<Usuario, String> {
 
-	@Query(value= "SELECT a FROM Usuario a")
-	List<Usuario>findAllusuarios();
-	
+	@Query(value = "SELECT a FROM Usuario a")
+	List<Usuario> findAllusuarios();
+
 	@Query("SELECT c FROM Usuario c WHERE c.email = :email")
-    Optional <Usuario> buscarPorEmail(@Param("email") String email);
+	Optional<Usuario> buscarPorEmail(@Param("email") String email);
 }

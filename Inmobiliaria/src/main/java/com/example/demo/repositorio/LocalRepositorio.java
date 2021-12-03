@@ -11,6 +11,6 @@ import com.example.demo.entidades.Local;
 @Repository
 public interface LocalRepositorio extends JpaRepository<Local, String> {
 
-	@Query(value= "SELECT a FROM Local a")
-	List<Local>findAlllocales();
+	@Query(value = "SELECT a FROM Local a")
+	List<Local> findAlllocales();
 }

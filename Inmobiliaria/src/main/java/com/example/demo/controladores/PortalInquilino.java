@@ -22,11 +22,11 @@ public class PortalInquilino {
 	public String inquilino() {
 		return "inquilino.html";
 	}
-	
+
 	@GetMapping("/encontrar")
 	public String listaInquilinos(ModelMap model, @RequestParam String id) throws ErrorServicio {
 		Inquilino inquilino = inquilinoService.findById(id);
-		model.addAttribute("inquilino", inquilino.getApellido()+ " " + inquilino.getNombre());
+		model.addAttribute("inquilino", inquilino.getApellido() + " " + inquilino.getNombre());
 		return "inquilino";
 	}
 

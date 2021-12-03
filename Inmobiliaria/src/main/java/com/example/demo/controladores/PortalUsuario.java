@@ -36,7 +36,8 @@ public class PortalUsuario {
 	@PreAuthorize("hasRole('ROLE_ADMIN','ROLE_USUARIO','ROLE_PROPIETARIO','ROLE_INQUILINO')")
 	@PostMapping("/actualizar-perfil")
 	public String registrar(ModelMap model, HttpSession session, @RequestParam String id, @RequestParam String nombre,
-			@RequestParam String apellido, @RequestParam String email, @RequestParam String contrasenia) throws ErrorServicio {
+			@RequestParam String apellido, @RequestParam String email, @RequestParam String contrasenia)
+			throws ErrorServicio {
 
 		Usuario usuario = null;
 		try {
@@ -53,29 +54,29 @@ public class PortalUsuario {
 			return "perfil.html";
 
 		} catch (ErrorServicio e) {
-			
+
 			model.addAttribute("error", e.getMessage());
 			model.put("error", e.getMessage());
 			return "redirect:/index";
-			
+
 		}
 	}
-	
+
 	public String editarPerfil(HttpSession session, @RequestParam String id, ModelMap model) {
-		
+
 		Usuario login = (Usuario) session.getAttribute("usuariosession");
-        if (login == null || !login.getId().equals(id)) {
-            return "redirect:/index";
-        }
-        
-        try {
-            Usuario usuario = usuarioService.findById(id);
-            model.addAttribute("perfil", usuario);
-        } catch (ErrorServicio e) {
-            model.addAttribute("error", e.getMessage());
-        }
-        return "perfil.html";
-		
+		if (login == null || !login.getId().equals(id)) {
+			return "redirect:/index";
+		}
+
+		try {
+			Usuario usuario = usuarioService.findById(id);
+			model.addAttribute("perfil", usuario);
+		} catch (ErrorServicio e) {
+			model.addAttribute("error", e.getMessage());
+		}
+		return "perfil.html";
+
 	}
-	
+
 }

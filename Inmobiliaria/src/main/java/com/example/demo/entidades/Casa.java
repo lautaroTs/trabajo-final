@@ -10,7 +10,6 @@ public class Casa extends Propiedad {
 	protected Boolean amoblado;
 	protected Boolean jardin;
 	protected Boolean mascotas;
-	
 
 	public Casa() {
 		super();

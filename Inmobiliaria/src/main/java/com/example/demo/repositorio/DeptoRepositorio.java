@@ -11,6 +11,6 @@ import com.example.demo.entidades.Depto;
 @Repository
 public interface DeptoRepositorio extends JpaRepository<Depto, String> {
 
-	@Query(value= "SELECT a FROM Depto a")
-	List<Depto>findAllDeptos();
+	@Query(value = "SELECT a FROM Depto a")
+	List<Depto> findAllDeptos();
 }

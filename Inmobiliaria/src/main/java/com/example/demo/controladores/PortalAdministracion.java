@@ -10,20 +10,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.errores.ErrorServicio;
 import com.example.demo.servicio.AdministracionService;
 
-
-
 @Controller
-@RequestMapping("/administracion") 
+@RequestMapping("/administracion")
 public class PortalAdministracion {
 
 	@Autowired
 	private AdministracionService administracionService;
-	
+
 	@GetMapping("/crearAdministracion")
 	public String crearAdministracion() {
 		return "crearAdministracion.html";
-}
-	
+	}
+
 //	@PostMapping("/crearAdministracion")
 //	public String CrearAdministracion(@RequestParam String direccion, @RequestParam String id) {
 //		
@@ -37,7 +35,7 @@ public class PortalAdministracion {
 //		return "index.html";
 //		
 //	}
-	
+
 //	@GetMapping("/crearUsuarioAdministracion")
 //	public String crearUsuarioAdministracion() {
 //		return "crearUsuarioAdministracion.html";
@@ -57,45 +55,45 @@ public class PortalAdministracion {
 //		return "index.html";
 //		
 //	}
-	
-	
+
 	@GetMapping("/modificarAdministracion")
 	public String modificarAdministracion() {
 		return "modificarAdministracion.html";
 	}
-	
+
 	@PostMapping("/modificarAdministracion")
-	public String ModificarAdministracion(@RequestParam String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String contrasenia, @RequestParam String email, @RequestParam String direccion) {
-	
-	try {
-		administracionService.ModificarAdministracion(id, nombre, apellido, contrasenia, email, direccion);
-	}catch (ErrorServicio e) {
-		e.printStackTrace();
-		return "administracion.html";
+	public String ModificarAdministracion(@RequestParam String id, @RequestParam String nombre,
+			@RequestParam String apellido, @RequestParam String contrasenia, @RequestParam String email,
+			@RequestParam String direccion) {
+
+		try {
+			administracionService.ModificarAdministracion(id, nombre, apellido, contrasenia, email, direccion);
+		} catch (ErrorServicio e) {
+			e.printStackTrace();
+			return "administracion.html";
+		}
+
+		return "index.html";
 	}
-	
-	return "index.html";
-	}
-	
+
 	@GetMapping("/eliminarAdministracion")
 	public String EliminarAdministracion() {
 		return "eliminarAdministracion.html";
 	}
-	
-	
+
 	@PostMapping("/eliminarAdministracion")
-	public String EliminarAdministracion(@RequestParam String id){
-		
+	public String EliminarAdministracion(@RequestParam String id) {
+
 		try {
-			
+
 			administracionService.EliminarAdministracion(id);
 		} catch (ErrorServicio e) {
-			
+
 			e.printStackTrace();
 			return "administracion.html";
 		}
-		
+
 		return "index.html";
 	}
-	
+
 }

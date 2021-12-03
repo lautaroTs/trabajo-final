@@ -21,7 +21,7 @@ public class AdministracionService {
 
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
-	
+
 	@Autowired
 	private UsuarioService usuarioService;
 
@@ -138,13 +138,11 @@ public class AdministracionService {
 			throw new ErrorServicio("No se encontro la administracion solicitada");
 		}
 	}
-	
+
 	@Transactional
 	public List<Administracion> listarAdministracion() {
-		return administracionRepositorio.findAll(); 
-		
-		
-		
+		return administracionRepositorio.findAll();
+
 	}
-	
+
 }

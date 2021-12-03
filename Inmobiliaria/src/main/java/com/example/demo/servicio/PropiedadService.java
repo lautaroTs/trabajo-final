@@ -187,6 +187,5 @@ public class PropiedadService {
 			throw new ErrorServicio("No se encontro la propiedad solicitada");
 		}
 	}
-	
-	
+
 }

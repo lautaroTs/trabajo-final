@@ -26,7 +26,7 @@ public class Administracion extends Usuario {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	
+
 	public Rol getRol() {
 		return rol;
 	}
@@ -34,5 +34,5 @@ public class Administracion extends Usuario {
 	public void setRol(Rol rol) {
 		this.rol = Rol.ADMIN;
 	}
-	
+
 }

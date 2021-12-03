@@ -32,13 +32,13 @@ public class UsuarioService implements UserDetailsService {
 		usuario.setNombre(nombre);
 		usuario.setApellido(apellido);
 		usuario.setEmail(email);
-        String encriptada = new BCryptPasswordEncoder().encode(contrasenia);
-        usuario.setContrasenia(encriptada);
+		String encriptada = new BCryptPasswordEncoder().encode(contrasenia);
+		usuario.setContrasenia(encriptada);
 		usuarioRepositorio.save(usuario);
 
 		return usuario;
 	}
-	
+
 	@Transactional
 	public void Validar(String nombre, String apellido, String email, String contrasenia) throws ErrorServicio {
 
@@ -74,8 +74,8 @@ public class UsuarioService implements UserDetailsService {
 			usuario.setNombre(nombre);
 			usuario.setApellido(apellido);
 			usuario.setEmail(email);
-	        String encriptada = new BCryptPasswordEncoder().encode(contrasenia);
-	        usuario.setContrasenia(encriptada);
+			String encriptada = new BCryptPasswordEncoder().encode(contrasenia);
+			usuario.setContrasenia(encriptada);
 
 			usuarioRepositorio.save(usuario);
 
@@ -120,31 +120,31 @@ public class UsuarioService implements UserDetailsService {
 			throw new ErrorServicio("No existe el usuario.");
 		}
 	}
-	
+
 	private Usuario validarUsuario(Usuario usuario, String contrasenia) throws ErrorServicio {
 		if (usuario.getContrasenia().equals(contrasenia)) {
 			return usuario;
-		}else {
+		} else {
 			throw new ErrorServicio("Contraseña incorrecta");
 		}
 	}
-	
-	public Boolean esPropietario (Usuario usuario) throws ErrorServicio {
+
+	public Boolean esPropietario(Usuario usuario) throws ErrorServicio {
 		PropietarioService propietarioService = new PropietarioService();
 		if (propietarioService.esPropietario(usuario)) {
 			return true;
 		}
 		return false;
 	}
-	
-	public Boolean esInquilino (Usuario usuario) throws ErrorServicio {
+
+	public Boolean esInquilino(Usuario usuario) throws ErrorServicio {
 		InquilinoService inquilinoService = new InquilinoService();
 		if (inquilinoService.esInquilino(usuario)) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	@Transactional
 	public Usuario findById(String id) throws ErrorServicio {
 		Optional<Usuario> respuesta = usuarioRepositorio.findById(id);

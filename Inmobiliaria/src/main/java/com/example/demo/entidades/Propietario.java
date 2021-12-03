@@ -41,7 +41,7 @@ public class Propietario extends Usuario {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	
+
 	public Rol getRol() {
 		return rol;
 	}

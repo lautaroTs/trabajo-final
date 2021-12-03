@@ -12,7 +12,6 @@ public class Inquilino extends Usuario {
 	@OneToOne
 	protected Propiedad propiedad;
 
-	
 	public Inquilino() {
 		super();
 	}
@@ -38,7 +37,7 @@ public class Inquilino extends Usuario {
 	public void setPropiedad(Propiedad propiedad) {
 		this.propiedad = propiedad;
 	}
-	
+
 	public Rol getRol() {
 		return rol;
 	}

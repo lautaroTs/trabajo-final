@@ -11,6 +11,6 @@ import com.example.demo.entidades.Inquilino;
 @Repository
 public interface InquilinoRepositorio extends JpaRepository<Inquilino, String> {
 
-	@Query(value= "SELECT a FROM Inquilino a")
-	List<Inquilino>findAllinquilinos();
+	@Query(value = "SELECT a FROM Inquilino a")
+	List<Inquilino> findAllinquilinos();
 }

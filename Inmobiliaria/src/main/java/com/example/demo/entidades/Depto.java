@@ -13,7 +13,7 @@ public class Depto extends Propiedad {
 	protected Integer ambientes;
 	protected Boolean seguridad;
 	protected Boolean mascotas;
-	
+
 	public Depto() {
 		super();
 		// TODO Auto-generated constructor stub

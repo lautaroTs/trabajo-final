@@ -55,28 +55,27 @@ public class PropietarioService {
 		}
 
 	}
-	
+
 	public Propietario crearPropietarioSinUsuario(String nombre, String apellido, String contrasenia, String email,
 			Integer dni, String direccion) throws ErrorServicio {
-		
+
 		try {
-		
-		Propietario propietario = new Propietario();
-		
-		
 
-		propietario.setNombre(nombre);
-		propietario.setApellido(apellido);
-		propietario.setContrasenia(contrasenia);
-		propietario.setEmail(email);
-		propietario.setDni(dni);;
-		propietario.setDireccion(direccion);
+			Propietario propietario = new Propietario();
 
-		propietarioRepositorio.save(propietario);
-		
-		return propietario;
-		
-		}catch(Exception e) {
+			propietario.setNombre(nombre);
+			propietario.setApellido(apellido);
+			propietario.setContrasenia(contrasenia);
+			propietario.setEmail(email);
+			propietario.setDni(dni);
+			;
+			propietario.setDireccion(direccion);
+
+			propietarioRepositorio.save(propietario);
+
+			return propietario;
+
+		} catch (Exception e) {
 			throw new ErrorServicio("error creando propietario");
 		}
 	}
@@ -105,22 +104,22 @@ public class PropietarioService {
 			Integer dni, String direccion) throws ErrorServicio {
 //		Propiedad propiedad = propiedadRepositorio.getById(idp);
 
-			Propietario propietario = findById(id);
+		Propietario propietario = findById(id);
 
-			propietario.setNombre(nombre);
-			propietario.setApellido(apellido);
-			propietario.setEmail(email);
-			propietario.setContrasenia(contrasenia);
-			propietario.setDni(dni);
-			propietario.setDireccion(direccion);
+		propietario.setNombre(nombre);
+		propietario.setApellido(apellido);
+		propietario.setEmail(email);
+		propietario.setContrasenia(contrasenia);
+		propietario.setDni(dni);
+		propietario.setDireccion(direccion);
 //			TOFIX propietario.setPropiedad(propiedad);
 
-			propietarioRepositorio.save(propietario);
-		
+		propietarioRepositorio.save(propietario);
+
 	}
 
 	public void EliminarPropietario(String id) throws ErrorServicio {
-			propietarioRepositorio.delete(findById(id));
+		propietarioRepositorio.delete(findById(id));
 	}
 
 	@Transactional
@@ -140,14 +139,14 @@ public class PropietarioService {
 		}
 	}
 
-	public Boolean esPropietario (Usuario usuario) throws ErrorServicio {
+	public Boolean esPropietario(Usuario usuario) throws ErrorServicio {
 		Propietario propietario = new Propietario();
 		propietario = findById(usuario.getId());
 		if (!propietario.getId().isEmpty()) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
-	
+
 }
