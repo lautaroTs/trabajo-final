@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.entidades.Propietario;
 import com.example.demo.entidades.Usuario;
 import com.example.demo.errores.ErrorServicio;
 import com.example.demo.repositorio.UsuarioRepositorio;
@@ -30,13 +32,14 @@ public class UsuarioService implements UserDetailsService {
 		usuario.setNombre(nombre);
 		usuario.setApellido(apellido);
 		usuario.setEmail(email);
-		usuario.setContrasenia(contrasenia);
-		usuario.setNivelAcceso(1);
+        String encriptada = new BCryptPasswordEncoder().encode(contrasenia);
+        usuario.setContrasenia(encriptada);
 		usuarioRepositorio.save(usuario);
 
 		return usuario;
 	}
-
+	
+	@Transactional
 	public void Validar(String nombre, String apellido, String email, String contrasenia) throws ErrorServicio {
 
 		if (nombre == null || nombre.isEmpty()) {
@@ -71,7 +74,8 @@ public class UsuarioService implements UserDetailsService {
 			usuario.setNombre(nombre);
 			usuario.setApellido(apellido);
 			usuario.setEmail(email);
-			usuario.setContrasenia(contrasenia);
+	        String encriptada = new BCryptPasswordEncoder().encode(contrasenia);
+	        usuario.setContrasenia(encriptada);
 
 			usuarioRepositorio.save(usuario);
 
@@ -108,7 +112,7 @@ public class UsuarioService implements UserDetailsService {
 
 	@Transactional
 	public Usuario findUserByEmail(String email, String contrasenia) throws ErrorServicio {
-		Optional<Usuario> respuesta = usuarioRepositorio.findByEmail(email);
+		Optional<Usuario> respuesta = usuarioRepositorio.buscarPorEmail(email);
 		if (respuesta.isPresent()) {
 			Usuario usuario = respuesta.get();
 			return validarUsuario(usuario, contrasenia);
@@ -139,5 +143,16 @@ public class UsuarioService implements UserDetailsService {
 			return true;
 		}
 		return false;
+	}
+	
+	@Transactional
+	public Usuario findById(String id) throws ErrorServicio {
+		Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
+		if (respuesta.isPresent()) {
+			Usuario usuario = respuesta.get();
+			return usuario;
+		} else {
+			throw new ErrorServicio("No se encontro el propietario solicitado");
+		}
 	}
 }

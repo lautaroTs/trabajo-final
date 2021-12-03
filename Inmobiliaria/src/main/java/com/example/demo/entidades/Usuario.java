@@ -1,10 +1,14 @@
 package com.example.demo.entidades;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.example.demo.enums.Rol;
 
 import lombok.Data;
 
@@ -20,7 +24,8 @@ public class Usuario {
 	protected String apellido;
 	protected String email;
 	protected String contrasenia;
-	protected Integer nivelAcceso;
+	@Enumerated(EnumType.STRING)
+	protected Rol rol;
 
 	public String getId() {
 		return id;
@@ -62,12 +67,12 @@ public class Usuario {
 		this.contrasenia = contrasenia;
 	}
 
-	public Integer getNivelAcceso() {
-		return nivelAcceso;
+	public Rol getRol() {
+		return rol;
 	}
 
-	public void setNivelAcceso(Integer nivelAcceso) {
-		this.nivelAcceso = nivelAcceso;
+	public void setRol(Rol rol) {
+		this.rol = Rol.USUARIO;
 	}
 
 }

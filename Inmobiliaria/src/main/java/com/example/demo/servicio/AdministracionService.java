@@ -26,58 +26,56 @@ public class AdministracionService {
 	private UsuarioService usuarioService;
 
 	// Crear usuario administracion teniendo ya el usuario creado
-	@Transactional
-	public Administracion CrearAdministracion(String direccion, String id) throws ErrorServicio {
+//	@Transactional
+//	public Administracion CrearAdministracion(String direccion, String id) throws ErrorServicio {
+//
+//		Validar(direccion, id);
+//
+//		Administracion administracion = new Administracion();
+//
+//		Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
+//
+//		if (respuesta.isPresent()) {
+//
+//			Usuario usuario = respuesta.get();
+//
+//			administracion.setNombre(usuario.getNombre());
+//			administracion.setApellido(usuario.getApellido());
+//			administracion.setContrasenia(usuario.getContrasenia());
+//			administracion.setEmail(usuario.getEmail());
+//			administracion.setId(usuario.getId());
+//
+//			administracion.setDireccion(direccion);
+//			administracionRepositorio.save(administracion);
+//
+//			return administracion;//Hay en este método una devolución administración 
+//		} else {
+//			throw new ErrorServicio("No se encontro el usuario solicitado.");
+//		}
+//
+//	}
 
-		Validar(direccion, id);
-
-		Administracion administracion = new Administracion();
-
-		Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
-
-		if (respuesta.isPresent()) {
-
-			Usuario usuario = respuesta.get();
-
-			administracion.setNombre(usuario.getNombre());
-			administracion.setApellido(usuario.getApellido());
-			administracion.setContrasenia(usuario.getContrasenia());
-			administracion.setEmail(usuario.getEmail());
-			administracion.setId(usuario.getId());
-			administracion.setNivelAcceso(4);
-
-			administracion.setDireccion(direccion);
-			administracionRepositorio.save(administracion);
-
-			return administracion;//Hay en este método una devolución administración 
-		} else {
-			throw new ErrorServicio("No se encontro el usuario solicitado.");
-		}
-
-	}
-
-	@Transactional
-	public Administracion CrearUsuarioAdministracion(String nombre, String apellido, String email, String contrasenia,
-			String direccion) throws ErrorServicio {
-		try {
-			Usuario usuario = usuarioService.CrearUsuario(nombre, apellido, email, contrasenia);
-			Administracion administracion = new Administracion();
-			
-			administracion.setNombre(usuario.getNombre());
-			administracion.setApellido(usuario.getApellido());
-			administracion.setContrasenia(usuario.getContrasenia());
-			administracion.setEmail(usuario.getEmail());
-			administracion.setId(usuario.getId());
-			administracion.setNivelAcceso(4);
-			administracion.setDireccion(direccion);
-			
-			administracionRepositorio.save(administracion);
-			
-			return administracion;	// En este método hay otro retono de administración 		
-		} catch (Exception e) {
-			throw new ErrorServicio("No se pudo crear el usuario administracion.");
-		}
-	}
+//	@Transactional
+//	public Administracion CrearUsuarioAdministracion(String nombre, String apellido, String email, String contrasenia,
+//			String direccion) throws ErrorServicio {
+//		try {
+//			Usuario usuario = usuarioService.CrearUsuario(nombre, apellido, email, contrasenia);
+//			Administracion administracion = new Administracion();
+//			
+//			administracion.setNombre(usuario.getNombre());
+//			administracion.setApellido(usuario.getApellido());
+//			administracion.setContrasenia(usuario.getContrasenia());
+//			administracion.setEmail(usuario.getEmail());
+//			administracion.setId(usuario.getId());
+//			administracion.setDireccion(direccion);
+//			
+//			administracionRepositorio.save(administracion);
+//			
+//			return administracion;	// En este método hay otro retono de administración 		
+//		} catch (Exception e) {
+//			throw new ErrorServicio("No se pudo crear el usuario administracion.");
+//		}
+//	}
 
 	public void Validar(String direccion, String id) throws ErrorServicio {
 

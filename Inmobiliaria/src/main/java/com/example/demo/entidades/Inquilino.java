@@ -3,12 +3,15 @@ package com.example.demo.entidades;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
+import com.example.demo.enums.Rol;
+
 @Entity
 public class Inquilino extends Usuario {
 
 	protected Integer dni;
 	@OneToOne
 	protected Propiedad propiedad;
+
 	
 	public Inquilino() {
 		super();
@@ -34,6 +37,14 @@ public class Inquilino extends Usuario {
 
 	public void setPropiedad(Propiedad propiedad) {
 		this.propiedad = propiedad;
+	}
+	
+	public Rol getRol() {
+		return rol;
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = Rol.INQUILINO;
 	}
 
 }

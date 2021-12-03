@@ -43,7 +43,6 @@ public class PropietarioService {
 			propietario.setContrasenia(usuario.getContrasenia());
 			propietario.setEmail(usuario.getEmail());
 			propietario.setId(usuario.getId());
-			propietario.setNivelAcceso(3);
 			propietario.setDni(dni);
 			propietario.setDireccion(direccion);
 //			TOFIX propietario.setPropiedad(propiedadRepositorio.findById(idp).get());
@@ -70,8 +69,6 @@ public class PropietarioService {
 		propietario.setApellido(apellido);
 		propietario.setContrasenia(contrasenia);
 		propietario.setEmail(email);
-		
-		propietario.setNivelAcceso(3);
 		propietario.setDni(dni);;
 		propietario.setDireccion(direccion);
 
@@ -152,4 +149,5 @@ public class PropietarioService {
 			return false;
 		}
 	}
+	
 }

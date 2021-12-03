@@ -24,39 +24,39 @@ public class PortalAdministracion {
 		return "crearAdministracion.html";
 }
 	
-	@PostMapping("/crearAdministracion")
-	public String CrearAdministracion(@RequestParam String direccion, @RequestParam String id) {
-		
-		try {
-			administracionService.CrearAdministracion(direccion, id);
-		} catch (ErrorServicio e) {
-			e.printStackTrace();
-			return "usuarioAdministracion.html";
-		}
-		
-		return "index.html";
-		
-	}
+//	@PostMapping("/crearAdministracion")
+//	public String CrearAdministracion(@RequestParam String direccion, @RequestParam String id) {
+//		
+//		try {
+//			administracionService.CrearAdministracion(direccion, id);
+//		} catch (ErrorServicio e) {
+//			e.printStackTrace();
+//			return "usuarioAdministracion.html";
+//		}
+//		
+//		return "index.html";
+//		
+//	}
 	
-	@GetMapping("/crearUsuarioAdministracion")
-	public String crearUsuarioAdministracion() {
-		return "crearUsuarioAdministracion.html";
-}
-	
-	@PostMapping("/crearUsuarioAdministracion")
-	public String CrearUsuarioAdministracion(@RequestParam String nombre, @RequestParam String apellido, @RequestParam String email, @RequestParam String contrasenia,
-			@RequestParam String direccion) {
-		
-		try {
-			administracionService.CrearUsuarioAdministracion(nombre, apellido, email, contrasenia, direccion);
-		} catch (ErrorServicio e) {
-			e.printStackTrace();
-			return "usuarioAdministracion.html";
-		}
-		
-		return "index.html";
-		
-	}
+//	@GetMapping("/crearUsuarioAdministracion")
+//	public String crearUsuarioAdministracion() {
+//		return "crearUsuarioAdministracion.html";
+//}
+//	
+//	@PostMapping("/crearUsuarioAdministracion")
+//	public String CrearUsuarioAdministracion(@RequestParam String nombre, @RequestParam String apellido, @RequestParam String email, @RequestParam String contrasenia,
+//			@RequestParam String direccion) {
+//		
+//		try {
+//			administracionService.CrearUsuarioAdministracion(nombre, apellido, email, contrasenia, direccion);
+//		} catch (ErrorServicio e) {
+//			e.printStackTrace();
+//			return "usuarioAdministracion.html";
+//		}
+//		
+//		return "index.html";
+//		
+//	}
 	
 	
 	@GetMapping("/modificarAdministracion")

@@ -1,4 +1,4 @@
-package com.example.demo.cofiguraciones;
+package com.example.demo.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,26 +12,40 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.example.demo.servicio.UsuarioService;
 
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
+public class Security extends WebSecurityConfigurerAdapter {
 
-	@Autowired
+   
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers("/admin/*").hasRole("ADMIN")
+                .antMatchers("/css/*", "/js/*", "/img/*",
+                        "/**").permitAll()
+                .and().
+                formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/logincheck")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/inicio")
+                .permitAll()
+                .and().logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login?logout")             
+                .permitAll().
+                and().csrf().disable();
+    }
+    
+    @Autowired
 	@Qualifier("usuarioService")
 	public UsuarioService usuarioService;
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(usuarioService).passwordEncoder(new BCryptPasswordEncoder());
-	}
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/css/*", "/js/*", "/img/*", "/**").permitAll().and().formLogin()
-				.loginPage("/login").loginProcessingUrl("/logincheck").usernameParameter("email")
-				.passwordParameter("clave").defaultSuccessUrl("/loginsuccess").failureUrl("/login?error=error")
-				.permitAll().and().logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll().and().csrf()
-				.disable();
 	}
 }

@@ -2,6 +2,8 @@ package com.example.demo.entidades;
 
 import javax.persistence.Entity;
 
+import com.example.demo.enums.Rol;
+
 @Entity
 public class Administracion extends Usuario {
 
@@ -24,4 +26,13 @@ public class Administracion extends Usuario {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+	
+	public Rol getRol() {
+		return rol;
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = Rol.ADMIN;
+	}
+	
 }

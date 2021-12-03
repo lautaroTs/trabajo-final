@@ -45,7 +45,6 @@ public class InquilinoService {
 			inquilino.setContrasenia(usuario.getContrasenia());
 			inquilino.setEmail(usuario.getEmail());
 			inquilino.setId(usuario.getId());
-			inquilino.setNivelAcceso(2);
 			inquilino.setDni(dni);
 			inquilino.setPropiedad(propiedadRepositorio.findById(idp).get());
 
