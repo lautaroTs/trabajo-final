@@ -33,7 +33,7 @@ public class PortalUsuario {
 		return "02-registroUsuarioI.html";
 	}
 
-	@PreAuthorize("hasRole('ROLE_ADMIN','ROLE_USUARIO','ROLE_PROPIETARIO','ROLE_INQUILINO')")
+	@PreAuthorize("hasRole('ROLE_USUARIO')")
 	@PostMapping("/actualizar-perfil")
 	public String registrar(ModelMap model, HttpSession session, @RequestParam String id, @RequestParam String nombre,
 			@RequestParam String apellido, @RequestParam String email, @RequestParam String contrasenia)

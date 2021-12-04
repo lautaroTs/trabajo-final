@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entidades.Propietario;
 import com.example.demo.entidades.Usuario;
+import com.example.demo.enums.Rol;
 import com.example.demo.errores.ErrorServicio;
 import com.example.demo.repositorio.PropietarioRepositorio;
 import com.example.demo.repositorio.UsuarioRepositorio;
@@ -57,7 +58,7 @@ public class PropietarioService {
 	}
 
 	public Propietario crearPropietarioSinUsuario(String nombre, String apellido, String contrasenia, String email,
-			Integer dni, String direccion) throws ErrorServicio {
+			Integer dni, String direccion, Rol PROPIETARIO) throws ErrorServicio {
 
 		try {
 
@@ -68,7 +69,7 @@ public class PropietarioService {
 			propietario.setContrasenia(contrasenia);
 			propietario.setEmail(email);
 			propietario.setDni(dni);
-			;
+			propietario.setRol(PROPIETARIO);
 			propietario.setDireccion(direccion);
 
 			propietarioRepositorio.save(propietario);
