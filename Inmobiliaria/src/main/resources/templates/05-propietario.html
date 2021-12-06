@@ -17,13 +17,13 @@
 	<header>
 		<div th:replace="fragments/navbar :: nav_bar"></div>
 	</header>
-	<section>
-		<h1 th:object="${propietario}">Bienvenido</h1>
+	<section> 
+	
+		<h1>Bienvenido</h1>
 		<h2
-			th:value="${propietario.nombre}"></h2>  
-         
+			th:text="${propietario.nombre}"></h2>  
     </section>
-    <div>
+   <!-- <div>
     	<table class="table">
 			<thead>
 				<tr>
@@ -64,7 +64,7 @@
 
 
 			</div>
-			<hr />
+			<hr /> -->
 
 			<div th:replace="footer"></div>
 </body>

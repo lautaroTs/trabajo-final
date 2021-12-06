@@ -1,0 +1,32 @@
+<nav th:fragment="nav_buscador">
+        <form action="08-respuestaBusqueda.html" class="formaction" style="width: 100%; text-align: center; 
+        border-style: solid; border-color: #E6E6FA; padding: 5px;">
+          <div class="row">
+              <div class="col-md-3">
+                  <label for="busqueda">Buscar</label>
+                  <input type="search" id="busqueda" placeholder="Buscar por zona"/>
+              </div>
+              <div class="col-md-3">
+                  <label for="Tipo Prop">Tipo de Propiedad</label>
+                  <select name="" id="propiedad" >
+                    <option value=""></option>
+                    <option value="Casa">Casa</option>
+                    <option value="Departamento">Departamento</option>
+                    <option value="Local Comercial">Local Comercial</option>
+                  </select>
+              </div>
+              <div class="col-md-3">
+                  <label for="tipo de operacion">Tipo de operacion</label>
+                  <select name="tipo de operacion" id="operacion">
+                    <option value="Alquiler">Alquiler</option>
+                    <option value="Venta">Venta</option>
+                    <option value="Alq/venta">Alquiler o venta</option>
+                  </select>
+              </div>
+              <div class="col-md-3">
+                    <input type="submit"  value="buscar" />
+              </div>
+            </div>
+        </form>
+     
+</nav>

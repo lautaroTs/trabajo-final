@@ -3,6 +3,7 @@ package com.example.demo.controladores;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,16 +26,22 @@ public class PortalPropietario {
 	}
 	
 	@PostMapping("/crear")
-	public String creaProp(Model model,
+	public String creaProp(ModelMap model,
 			@RequestParam String nombre, 
 			@RequestParam String apellido, 
 			@RequestParam String email, 
 			@RequestParam String contrasenia,
 			@RequestParam String direccion,
 			@RequestParam Integer dni) throws ErrorServicio {
-		Propietario propietario = propietarioService.crearPropietarioSinUsuario(nombre, apellido, contrasenia,email, dni, direccion);
-		model.addAttribute("propietario",propietario);
-		return "05-propietario";
+		try {
+			Propietario propietario = propietarioService.crearPropietarioSinUsuario(nombre, apellido, contrasenia,email, dni, direccion);
+			model.put("propietario",propietario);
+			return "05-propietario";
+		} catch (Exception e) {
+			throw new  ErrorServicio ("Error Servicio crear PostMapping");
+		}
+		
+		
 	}
 	
 	

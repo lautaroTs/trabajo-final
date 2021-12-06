@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,9 +14,12 @@
 </head>
 
 <body style="margin: 30px;">
-    <header>
-        <a href="00-index.html" ><img src="img/logo.png" alt="" style="width: 10%; height: auto;"></a>
-    </header>
+
+        <header>
+		      <div th:replace="fragments/navbar.html :: nav_bar"></div>
+		      <div th:replace="fragments/buscador.html :: nav_buscador"></div>
+    </header><br>
+  
     <section>
         <div class="row">
             <div class="col-md-3"></div>
