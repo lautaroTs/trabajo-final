@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -66,7 +67,8 @@ public class PropietarioService {
 
 			propietario.setNombre(nombre);
 			propietario.setApellido(apellido);
-			propietario.setContrasenia(contrasenia);
+			String encriptada = new BCryptPasswordEncoder().encode(contrasenia);
+			propietario.setContrasenia(encriptada);
 			propietario.setEmail(email);
 			propietario.setDni(dni);
 			propietario.setRol(PROPIETARIO);
@@ -129,6 +131,26 @@ public class PropietarioService {
 
 	}
 
+//	@Transactional
+//	public Propietario findUserByEmail(String email, String contrasenia) throws ErrorServicio {
+//		Optional<Propietario> respuesta = propietarioRepositorio.buscarPorEmail(email);
+//		if (respuesta.isPresent()) {
+//			Propietario propietario = respuesta.get();
+//			return validarPropietario(propietario, contrasenia);
+//		} else {
+//			throw new ErrorServicio("No existe el usuario.");
+//		}
+//	}
+//	
+//	private Propietario validarPropietario(Propietario propietario, String contrasenia) throws ErrorServicio {
+//		if (propietario.getContrasenia().equals(contrasenia)) {
+//			return propietario;
+//		} else {
+//			throw new ErrorServicio("Contraseña incorrecta");
+//		}
+//	}
+	
+	
 	@Transactional
 	public Propietario findById(String id) throws ErrorServicio {
 		Optional<Propietario> respuesta = propietarioRepositorio.findById(id);

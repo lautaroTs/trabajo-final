@@ -37,8 +37,9 @@ public class Propiedad {
 	protected Double expensas;
 	protected Integer plantas;
 	protected Integer antiguedad;
-	protected Boolean alquiler;
-	protected Boolean venta;
+//	protected Boolean alquiler;
+//	protected Boolean venta;
+	protected String operacion;
 
 	@ManyToOne
 	protected Propietario propietario;
@@ -139,21 +140,21 @@ public class Propiedad {
 		this.antiguedad = antiguedad;
 	}
 
-	public Boolean getAlquiler() {
-		return alquiler;
-	}
-
-	public void setAlquiler(Boolean alquiler) {
-		this.alquiler = alquiler;
-	}
-
-	public Boolean getVenta() {
-		return venta;
-	}
-
-	public void setVenta(Boolean venta) {
-		this.venta = venta;
-	}
+//	public Boolean getAlquiler() {
+//		return alquiler;
+//	}
+//
+//	public void setAlquiler(Boolean alquiler) {
+//		this.alquiler = alquiler;
+//	}
+//
+//	public Boolean getVenta() {
+//		return venta;
+//	}
+//
+//	public void setVenta(Boolean venta) {
+//		this.venta = venta;
+//	}
 
 	public Propietario getPropietario() {
 		return propietario;
@@ -161,6 +162,14 @@ public class Propiedad {
 
 	public void setPropietario(Propietario propietario) {
 		this.propietario = propietario;
+	}
+	
+	public String getOperacion() {
+		return operacion;
+	}
+	
+	public void setOperacion(String operacion) {
+		this.operacion = operacion;
 	}
 
 }

@@ -48,9 +48,8 @@ public class DeptoService {
 			departamento.setExpensas(propiedad.getExpensas());
 			departamento.setPlantas(propiedad.getPlantas());
 			departamento.setAntiguedad(propiedad.getAntiguedad());
-			departamento.setAlquiler(propiedad.getAlquiler());
-			departamento.setVenta(propiedad.getVenta());
 			departamento.setId(propiedad.getId());
+			departamento.setOperacion(propiedad.getOperacion());
 			departamento.setAmoblado(amoblado);
 			departamento.setEspCompartidos(esCompartido);
 			departamento.setPiso(piso);
@@ -59,6 +58,7 @@ public class DeptoService {
 			departamento.setAmbientes(ambientes);
 			departamento.setSeguridad(seguridad);
 			departamento.setMascotas(mascotas);
+			
 
 			departamentoRepositorio.save(departamento);
 			return departamento;
@@ -113,7 +113,7 @@ public class DeptoService {
 	@Transactional
 	public void ModificarDepartamento(String id, String zona, String direccion, Double superficie, Integer banios,
 			Boolean estacionamiento, Double precio, Date disponibilidadInicio, Date disponibilidadFinal,
-			Double expensas, Integer plantas, Integer antiguedad, Boolean alquiler, Boolean venta, Boolean amoblado,
+			Double expensas, Integer plantas, Integer antiguedad, String operacion, Boolean amoblado,
 			Boolean esCompartido, Integer piso, Boolean patio, Integer dormitorios, Integer ambientes,
 			Boolean seguridad, Boolean mascotas) throws ErrorServicio {
 
@@ -134,8 +134,7 @@ public class DeptoService {
 			departamento.setExpensas(expensas);
 			departamento.setPlantas(plantas);
 			departamento.setAntiguedad(antiguedad);
-			departamento.setAlquiler(alquiler);
-			departamento.setVenta(venta);
+			departamento.setOperacion(operacion);
 			departamento.setAmoblado(amoblado);
 			departamento.setEspCompartidos(esCompartido);
 			departamento.setPiso(piso);

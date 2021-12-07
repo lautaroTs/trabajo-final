@@ -1,17 +1,15 @@
 package com.example.demo.controladores;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.entidades.Usuario;
+import com.example.demo.entidades.Propietario;
 import com.example.demo.errores.ErrorServicio;
-import com.example.demo.servicio.InquilinoService;
-import com.example.demo.servicio.PropietarioService;
 import com.example.demo.servicio.UsuarioService;
 
 @Controller
@@ -36,39 +34,20 @@ public class PortalIndex {
 		return "10-nuestrosServicios.html";
 	}
 
-	@GetMapping("/login")
-	public String login() {
-		return "04-login.html";
-	}
-
 	@GetMapping("/recuperoContrasena")
 	public String recuperoDeContraseña() {
 		return "11-recuperoDeContraseña.html";
 	}
 
-	@PostMapping("/login")
-	public String loginForm(@RequestParam String email, @RequestParam String contrasenia, Model model)
-			throws ErrorServicio {
+	@GetMapping("/login")
+	public String loginForm(ModelMap model) throws ErrorServicio {
 
-		Usuario usuario = usuarioService.findUserByEmail(email, contrasenia);
-		if (usuarioService.esPropietario(usuario)) {
-			PropietarioService propietarioSvc = new PropietarioService();
+//		Usuario usuario = usuarioService.findUserByEmail(email, contrasenia);
 
-			model.addAttribute("propietario", propietarioSvc.findById(usuario.getId()));
-			return "05-propietario.html";
-		} else if (usuarioService.esInquilino(usuario)) {
-			InquilinoService inquilinoSvc = new InquilinoService();
-			model.addAttribute("inquilino", inquilinoSvc.findById(usuario.getId()));
+//		model.put("usuario", usuario);
 
-			return "06-inquilino.html";
-		} else {
-			return " ";
-		}
-	}
+		return "04-login";
 
-	@GetMapping("/Propietario")
-	public String propietario() {
-		return "05-propietario.html";
 	}
 
 	@GetMapping("/Inquilino")
@@ -76,7 +55,7 @@ public class PortalIndex {
 		return "06-inquilino.html";
 	}
 
-	@GetMapping("/RegistroPropiedad")
+	@GetMapping("/registroPropiedad")
 	public String registroPropiedad() {
 		return "07-registroPropiedad.html";
 	}

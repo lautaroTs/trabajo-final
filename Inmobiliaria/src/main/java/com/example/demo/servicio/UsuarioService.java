@@ -10,8 +10,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.core.GrantedAuthority;
+import java.util.ArrayList;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import javax.servlet.http.HttpSession;
+import org.springframework.security.core.userdetails.User;
 
-import com.example.demo.entidades.Propietario;
 import com.example.demo.entidades.Usuario;
 import com.example.demo.errores.ErrorServicio;
 import com.example.demo.repositorio.UsuarioRepositorio;
@@ -23,7 +29,7 @@ public class UsuarioService implements UserDetailsService {
 	private UsuarioRepositorio usuarioRepositorio;
 
 	@Transactional
-	public Usuario CrearUsuario(String nombre, String apellido, String email, String contrasenia) throws ErrorServicio {
+	public Usuario crearUsuario(String nombre, String apellido, String email, String contrasenia) throws ErrorServicio {
 
 		Validar(nombre, apellido, email, contrasenia);
 
@@ -34,6 +40,7 @@ public class UsuarioService implements UserDetailsService {
 		usuario.setEmail(email);
 		String encriptada = new BCryptPasswordEncoder().encode(contrasenia);
 		usuario.setContrasenia(encriptada);
+
 		usuarioRepositorio.save(usuario);
 
 		return usuario;
@@ -57,10 +64,11 @@ public class UsuarioService implements UserDetailsService {
 		if (contrasenia == null || contrasenia.isEmpty()) {
 			throw new ErrorServicio("La contraseña del usuario no puede ser null");
 		}
+
 	}
 
 	@Transactional
-	public void ModificarUsuario(String id, String nombre, String apellido, String email, String contrasenia)
+	public void modificarUsuario(String id, String nombre, String apellido, String email, String contrasenia)
 			throws ErrorServicio {
 
 		Validar(nombre, apellido, email, contrasenia);
@@ -99,9 +107,33 @@ public class UsuarioService implements UserDetailsService {
 	}
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    	
+        Usuario usuario = usuarioRepositorio.buscarPorEmail(email);
+        
+        if (usuario != null) {
+        	
+            List<GrantedAuthority> permisos = new ArrayList<>();
+                        
+            //Creo una lista de permisos! 
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_"+ usuario.getRol());
+            permisos.add(p1);
+         
+            //Esto me permite guardar el OBJETO USUARIO LOGUEADO, para luego ser utilizado
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            HttpSession session = attr.getRequest().getSession(true);
+            
+            session.setAttribute("usuariosession", usuario); // llave + valor
+
+            User user = new User(usuario.getEmail(), usuario.getContrasenia(), permisos);
+            
+    
+            
+            return user;
+
+        } else {
+            return null;
+        }
 	}
 
 	@Transactional
@@ -112,9 +144,8 @@ public class UsuarioService implements UserDetailsService {
 
 	@Transactional
 	public Usuario findUserByEmail(String email, String contrasenia) throws ErrorServicio {
-		Optional<Usuario> respuesta = usuarioRepositorio.buscarPorEmail(email);
-		if (respuesta.isPresent()) {
-			Usuario usuario = respuesta.get();
+		Usuario usuario = usuarioRepositorio.buscarPorEmail(email);
+		if (usuario != null) {
 			return validarUsuario(usuario, contrasenia);
 		} else {
 			throw new ErrorServicio("No existe el usuario.");

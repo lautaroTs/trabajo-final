@@ -36,8 +36,7 @@ public class PortalUsuario {
 	@PreAuthorize("hasRole('ROLE_USUARIO')")
 	@PostMapping("/actualizar-perfil")
 	public String registrar(ModelMap model, HttpSession session, @RequestParam String id, @RequestParam String nombre,
-			@RequestParam String apellido, @RequestParam String email, @RequestParam String contrasenia)
-			throws ErrorServicio {
+			@RequestParam String apellido, @RequestParam String email, @RequestParam String contrasenia) throws ErrorServicio {
 
 		Usuario usuario = null;
 		try {
@@ -48,7 +47,7 @@ public class PortalUsuario {
 			}
 
 			usuario = usuarioService.findById(id);
-			usuarioService.ModificarUsuario(id, nombre, apellido, email, contrasenia);
+			usuarioService.modificarUsuario(id, nombre, apellido, email, contrasenia);
 			session.setAttribute("usuariosession", usuario);
 
 			return "perfil.html";
@@ -60,6 +59,23 @@ public class PortalUsuario {
 			return "redirect:/index";
 
 		}
+	}
+
+	@GetMapping("/crear")
+	public String crearUsuario() throws ErrorServicio {
+		return "02A-registroUsuarioP";
+	}
+
+	@PostMapping("/crear")
+	public String crear(ModelMap model, @RequestParam String nombre, @RequestParam String apellido,
+			@RequestParam String email, @RequestParam String contrasenia) throws ErrorServicio {
+		try {
+			usuarioService.crearUsuario(nombre, apellido, contrasenia, email);
+			model.put("exito", "el usuario ha sido creado exitosamente");
+		} catch (Exception e) {
+			model.put("error", "el usuario no pudo ser creado");
+		}
+		return "04-login";
 	}
 
 	public String editarPerfil(HttpSession session, @RequestParam String id, ModelMap model) {

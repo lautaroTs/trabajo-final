@@ -1,5 +1,7 @@
 package com.example.demo.controladores;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entidades.Propiedad;
 import com.example.demo.entidades.Propietario;
 import com.example.demo.enums.Rol;
 import com.example.demo.errores.ErrorServicio;
+import com.example.demo.servicio.PropiedadService;
 import com.example.demo.servicio.PropietarioService;
 
 @Controller
@@ -22,6 +26,9 @@ public class PortalPropietario {
 
 	@Autowired
 	PropietarioService propietarioService;
+	
+	@Autowired
+	PropiedadService propiedadService;
 
 	@GetMapping("/crear")
 	public String crearPropietario() throws ErrorServicio {
@@ -29,7 +36,8 @@ public class PortalPropietario {
 	}
 
 	@PostMapping("/crear")
-	public String creaProp(ModelMap model, @RequestParam String nombre, @RequestParam String apellido,
+	public String creaProp(ModelMap model,
+			@RequestParam String nombre, @RequestParam String apellido,
 			@RequestParam String email, @RequestParam String contrasenia, @RequestParam String direccion,
 			@RequestParam Integer dni, Rol PROPIETARIO) throws ErrorServicio {
 		try {
@@ -86,6 +94,16 @@ public class PortalPropietario {
 		}
 		return "perfil.html";
 
+	}
+	
+	@GetMapping("/inicio")
+	public String propietario(ModelMap modelo) {
+
+		List<Propiedad> propiedad = propiedadService.listarPropiedad();
+
+		modelo.put("propiedad", propiedad);
+
+		return "05-propietario.html";
 	}
 
 }

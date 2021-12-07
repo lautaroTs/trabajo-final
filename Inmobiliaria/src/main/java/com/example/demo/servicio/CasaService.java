@@ -53,8 +53,7 @@ public class CasaService {
 			casa.setExpensas(propiedad.getExpensas());
 			casa.setPlantas(propiedad.getPlantas());
 			casa.setAntiguedad(propiedad.getAntiguedad());
-			casa.setAlquiler(propiedad.getAlquiler());
-			casa.setVenta(propiedad.getVenta());
+			casa.setOperacion(propiedad.getOperacion());
 			casa.setId(propiedad.getId());
 			casa.setDomritorios(dormitorios);
 			casa.setAmbientes(ambientes);
@@ -103,9 +102,8 @@ public class CasaService {
 	@Transactional
 	public void ModificarCasa(String id, String zona, String direccion, Double superficie, Integer banios,
 			Boolean estacionamiento, Double precio, Date disponibilidadInicio, Date disponibilidadFinal,
-			Double expensas, Integer plantas, Integer antiguedad, Boolean alquiler, Boolean venta, String prop,
-			Integer dormitorios, Integer ambientes, Boolean amoblado, Boolean jardin, Boolean mascotas, String idp)
-			throws ErrorServicio {
+			Double expensas, Integer plantas, Integer antiguedad, String operacion, String prop, Integer dormitorios,
+			Integer ambientes, Boolean amoblado, Boolean jardin, Boolean mascotas, String idp) throws ErrorServicio {
 		Optional<Casa> respuesta = casaRepositorio.findById(id);
 		Propietario propietario = propietarioRepositorio.getById(prop);
 		// Propiedad propiedad = propiedadRepositorio.getById(idp);
@@ -125,8 +123,7 @@ public class CasaService {
 			casa.setExpensas(expensas);
 			casa.setPlantas(plantas);
 			casa.setAntiguedad(antiguedad);
-			casa.setAlquiler(alquiler);
-			casa.setVenta(venta);
+			casa.getOperacion();
 			casa.setPropietario(propietario); // Estará bien o va propietario.get?
 			casa.setDomritorios(dormitorios);
 			casa.setAmbientes(ambientes);

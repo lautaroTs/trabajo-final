@@ -52,15 +52,15 @@ public class PortalDepto {
 			@RequestParam String direccion, @RequestParam Double superficie, @RequestParam Integer banios,
 			@RequestParam Boolean estacionamiento, @RequestParam Double precio, @RequestParam Date disponibilidadInicio,
 			@RequestParam Date disponibilidadFinal, @RequestParam Double expensas, @RequestParam Integer plantas,
-			@RequestParam Integer antiguedad, @RequestParam Boolean alquiler, @RequestParam Boolean venta,
-			@RequestParam Boolean amoblado, @RequestParam Boolean esCompartido, @RequestParam Integer piso,
-			@RequestParam Boolean patio, @RequestParam Integer dormitorios, @RequestParam Integer ambientes,
-			@RequestParam Boolean seguridad, @RequestParam Boolean mascotas) {
+			@RequestParam Integer antiguedad, @RequestParam String operacion, @RequestParam Boolean amoblado,
+			@RequestParam Boolean esCompartido, @RequestParam Integer piso, @RequestParam Boolean patio,
+			@RequestParam Integer dormitorios, @RequestParam Integer ambientes, @RequestParam Boolean seguridad,
+			@RequestParam Boolean mascotas) {
 
 		try {
 
 			deptoService.ModificarDepartamento(id, zona, direccion, superficie, banios, estacionamiento, precio,
-					disponibilidadInicio, disponibilidadFinal, expensas, plantas, antiguedad, alquiler, venta, amoblado,
+					disponibilidadInicio, disponibilidadFinal, expensas, plantas, antiguedad, operacion, amoblado,
 					esCompartido, piso, patio, dormitorios, ambientes, seguridad, mascotas);
 
 		} catch (ErrorServicio e) {

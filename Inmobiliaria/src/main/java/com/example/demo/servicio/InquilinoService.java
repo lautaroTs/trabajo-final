@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entidades.Inquilino;
-import com.example.demo.entidades.Propiedad;
-import com.example.demo.entidades.Propietario;
 import com.example.demo.entidades.Usuario;
-import com.example.demo.enums.Rol;
 import com.example.demo.errores.ErrorServicio;
 import com.example.demo.repositorio.InquilinoRepositorio;
 import com.example.demo.repositorio.PropiedadRepositorio;
@@ -31,8 +28,6 @@ public class InquilinoService {
 
 	@Transactional
 	public Inquilino CrearInquilino(Integer dni, String idu, String idp) throws ErrorServicio {
-
-		Validar(dni, idu, idp);
 
 		Inquilino inquilino = new Inquilino();
 
@@ -58,29 +53,6 @@ public class InquilinoService {
 			throw new ErrorServicio("No se encontro el inquilino solicitado");
 		}
 	}
-	
-	public Inquilino crearInquilinoSinUsuario(String nombre, String apellido, String contrasenia, String email,
-			Integer dni, Rol INQUILINO) throws ErrorServicio {
-
-		try {
-
-			Inquilino inquilino = new Inquilino();
-
-			inquilino.setNombre(nombre);
-			inquilino.setApellido(apellido);
-			inquilino.setContrasenia(contrasenia);
-			inquilino.setEmail(email);
-			inquilino.setDni(dni);
-			inquilino.setRol(INQUILINO);
-
-			inquilinoRepositorio.save(inquilino);
-
-			return inquilino;
-
-		} catch (Exception e) {
-			throw new ErrorServicio("error creando inquilino");
-		}
-	}
 
 	public void Validar(Integer dni, String idu, String idp) throws ErrorServicio {
 
@@ -101,7 +73,7 @@ public class InquilinoService {
 	public void ModificarInquilino(String id, String nombre, String apellido, String contrasenia, String email,
 			Integer dni) throws ErrorServicio {
 
-		//Propiedad propiedad = propiedadRepositorio.getById(idp);
+		// Propiedad propiedad = propiedadRepositorio.getById(idp);
 
 		Inquilino inquilino = findById(id);
 
@@ -110,7 +82,7 @@ public class InquilinoService {
 		inquilino.setEmail(email);
 		inquilino.setContrasenia(contrasenia);
 		inquilino.setDni(dni);
-		//inquilino.setPropiedad(propiedad);
+		// inquilino.setPropiedad(propiedad);
 
 		inquilinoRepositorio.save(inquilino);
 

@@ -46,9 +46,8 @@ public class LocalService {
 			local.setExpensas(propiedad.getExpensas());
 			local.setPlantas(propiedad.getPlantas());
 			local.setAntiguedad(propiedad.getAntiguedad());
-			local.setAlquiler(propiedad.getAlquiler());
-			local.setVenta(propiedad.getVenta());
 			local.setId(propiedad.getId());
+			local.setOperacion(propiedad.getOperacion());
 			localRepositorio.save(local);
 
 			return local;
@@ -70,7 +69,7 @@ public class LocalService {
 	@Transactional
 	public void ModificarLocal(String id, String zona, String direccion, Double superficie, Integer banios,
 			Boolean estacionamiento, Double precio, Date disponibilidadInicio, Date disponibilidadFinal,
-			Double expensas, Integer plantas, Integer antiguedad, Boolean alquiler, Boolean venta, String idp)
+			Double expensas, Integer plantas, Integer antiguedad, String idp, String operacion)
 			throws ErrorServicio {
 		Optional<Local> respuesta = localRepositorio.findById(id);
 		// Propiedad propiedad = propiedadRepositorio.getById(idp);
@@ -90,8 +89,7 @@ public class LocalService {
 			local.setExpensas(expensas);
 			local.setPlantas(plantas);
 			local.setAntiguedad(antiguedad);
-			local.setAlquiler(alquiler);
-			local.setVenta(venta);
+			local.setOperacion(operacion);
 
 			localRepositorio.save(local);
 

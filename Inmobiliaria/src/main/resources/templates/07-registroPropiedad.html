@@ -13,30 +13,27 @@
 <body style="margin: 30px;">
 	<header>
 		<header>
-			<a th:href="@{}"><img src="img/logo.png" alt="" style="width: 10%; height: auto;"></a>
+			<a th:href="@{/}"><img src="img/logo.png" alt="" style="width: 10%; height: auto;"></a>
 		</header>
 		<h1>Registro de propiedad</h1>
 		<br>
 
-		<form th:action="@{/propiedad}" method="post" class="col-md-12">
+		<form th:action="@{/propiedad/crearPropiedad}" method="post" class="col-md-12">
 			<div class="row">
 				<div class="col-md-6">
-					<label for="tipo">Tipo de operación</label><br>
-					<select class="form-select" id="tipo" required>
-
-						<option value=""></option>
+					<label for="operacion">Tipo de operación</label><br>
+					<select class="form-select" name="operacion" id="operacion" required>
 						<option value="1">Alquiler</option>
 						<option value="2">Venta</option>
-						<option value="3">Alquiler / Venta</option>
 					</select><br>
 				</div>
-				<div class="col-md-6">
+				<!--<div class="col-md-6">
 					<label for="tipo">Tipo de propiedad</label><br>
 					<select class="form-select" id="tipo" required>
 						<option value=""></option>
-						<option value="1">Departamento</option>
-						<option value="2">Casa</option>
-						<option value="3">Local Comercial</option>
+						<option value="1" name="Departamento">Departamento</option>
+						<option value="2" name="Casa">Casa</option>
+						<option value="3" name="Local">Local Comercial</option>
 					</select><br>
 				</div>
 			</div>
@@ -90,27 +87,27 @@
 						<option value="3">+ 15 años</option>
 					</select><br>
 				</div>
-			</div>
+			</div>-->
 
 
 			<div class="row">
 
 				<div class="col">
 
-					<label for="Direccion">Ingrese Calle</label><br>
-					<input type="text" name="Direccion" id="Direccion" / required><br>
+					<label for="direccion">Ingrese Calle</label><br>
+					<input type="text" name="direccion" id="direccion" / required><br>
 				</div>
-				<div class="col">
+				<!--<div class="col">
 
 					<label for="Direccion">Numero</label><br>
-					<input type="text" name="Direccion" id="Direccion" / required><br>
+					<input type="text" name="Numero" id="Direccion" / required><br>
 				</div>
-				<div class="col">
+				<div class="col">-->
 
-					<label for="Direccion">Localidad</label><br>
-					<input type="text" name="Direccion" id="Direccion" / required><br>
+					<label for="zona">Localidad</label><br>
+					<input type="text" name="zona" id="zona" / required><br>
 				</div>
-				<div class="col">
+				<!--<div class="col">
 
 					<label for="Direccion">Partido</label><br>
 					<input type="text" name="Direccion" id="Direccion" / required><br>
@@ -198,12 +195,12 @@
 					<label for="fotos">Seleccione imagenes</label><br>
 					<input type="file" name="" id="fotos">
 				</div>
-			</div>
+			</div>-->
 			<br>
 			<div class="row">
 				<div class="col-md-6">
 					<label for="submit">Enviar Registro</label><br>
-					<input type="submit" formaction="index.html" name="" id="submit">
+					<button type="submit" class="btn btn-primary">Registrar</button>
 				</div>
 			</div>
 

@@ -21,7 +21,7 @@ public class Security extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/admin/*").hasRole("ADMIN")
 				.antMatchers("/css/*", "/js/*", "/img/*", "/**").permitAll().and().formLogin().loginPage("/login")
 				.loginProcessingUrl("/logincheck").usernameParameter("username").passwordParameter("password")
-				.defaultSuccessUrl("/inicio").permitAll().and().logout().logoutUrl("/logout")
+				.defaultSuccessUrl("/propietario/inicio").permitAll().and().logout().logoutUrl("/logout")
 				.logoutSuccessUrl("/login?logout").permitAll().and().csrf().disable();
 	}
 

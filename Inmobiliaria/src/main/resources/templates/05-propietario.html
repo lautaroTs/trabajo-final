@@ -16,8 +16,9 @@
 		<div th:replace="fragments/navbar :: nav_bar"></div>
 	</header>
 	<section>
-		<h1 th:object="${propietario}">Bienvenido</h1>
-		<h2 th:value="${propietario.nombre}"></h2>
+		<h1 th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre}"></h1>
+		<h2 th:if="${session.usuariosession != null}" th:text="${session.usuariosession.apellido}"></h2>
+		
 
 	</section>
 	<div>
@@ -32,7 +33,7 @@
 				</tr>
 			</thead>
 
-			<tbody>
+			<!--<tbody>
 				<tr th: each="propiedad : ${propiedad}">
 					<td th: text="${propiedad.zona}"></td>
 					<td th: text="${propiedad.direccion}"></td>
@@ -46,12 +47,12 @@
 					<td type="hidden">id</td>
 				</tr>
 
-			</tbody>
+			</tbody>-->
 		</table>
 		<div class="row">
 			<div class="col-md-8"></div>
 			<div class="col-md-4">
-				<a class="btn btn-primary" href="07-registroPropiedad.html" role="button">Ingresar Nueva Propiedad</a>
+				<a class="btn btn-primary" th:href="@{/registroPropiedad}" role="button">Ingresar Nueva Propiedad</a>
 			</div>
 
 
@@ -60,9 +61,9 @@
 
 
 	</div>
-	<hr />
+	<hr>
 
-	<div th:replace="footer"></div>
+	<!--<div th:replace="footer"></div>-->
 </body>
 
 </html>
