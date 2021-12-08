@@ -26,6 +26,7 @@ public class Usuario {
 	protected String contrasenia;
 	@Enumerated(EnumType.STRING)
 	protected Rol rol;
+	
 
 	public String getId() {
 		return id;
@@ -66,13 +67,5 @@ public class Usuario {
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
 	}
-
-	public Rol getRol() {
-		return rol;
-	}
-
-	public void setRol(Rol rol) {
-		this.rol = Rol.USUARIO;
-	}
-
+	
 }

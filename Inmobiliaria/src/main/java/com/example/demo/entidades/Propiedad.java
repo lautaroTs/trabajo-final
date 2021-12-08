@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,29 +21,36 @@ public class Propiedad {
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
-	protected String id;
-	protected String zona;
-	protected String direccion;
-	protected Double superficie;
-	protected Integer banios;
-	protected Boolean estacionamiento;
-	protected Double precio;
+	private String id;
+	private String zona;
+	private String direccion;
+	private Integer piso;
+	private Double superficie;
+	private Integer banios;
+	private String estacionamiento;
+	private Double precio;
+	private String tipoDePropiedad;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	protected Date disponibilidadInicio;
+	private Date disponibilidadInicio;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	protected Date disponibilidadFinal;
+	private Date disponibilidadFinal;
 
-	protected Double expensas;
-	protected Integer plantas;
-	protected Integer antiguedad;
-//	protected Boolean alquiler;
-//	protected Boolean venta;
-	protected String operacion;
+	private String expensas;
+	private Integer plantas;
+	private String antiguedad;
+	private String operacion;
+	private Integer dormitorios;
+	private Integer ambientes;
+	private String amoblado;
+	private String mascotas;
+	
+	@OneToOne
+	private Foto foto;
 
 	@ManyToOne
-	protected Propietario propietario;
+	private Propietario propietario;
 
 	public String getId() {
 		return id;
@@ -84,11 +92,11 @@ public class Propiedad {
 		this.banios = banios;
 	}
 
-	public Boolean getEstacionamiento() {
+	public String getEstacionamiento() {
 		return estacionamiento;
 	}
 
-	public void setEstacionamiento(Boolean estacionamiento) {
+	public void setEstacionamiento(String estacionamiento) {
 		this.estacionamiento = estacionamiento;
 	}
 
@@ -116,11 +124,11 @@ public class Propiedad {
 		this.disponibilidadFinal = disponibilidadFinal;
 	}
 
-	public Double getExpensas() {
+	public String getExpensas() {
 		return expensas;
 	}
 
-	public void setExpensas(Double expensas) {
+	public void setExpensas(String expensas) {
 		this.expensas = expensas;
 	}
 
@@ -132,29 +140,14 @@ public class Propiedad {
 		this.plantas = plantas;
 	}
 
-	public Integer getAntiguedad() {
+	public String getAntiguedad() {
 		return antiguedad;
 	}
 
-	public void setAntiguedad(Integer antiguedad) {
+	public void setAntiguedad(String antiguedad) {
 		this.antiguedad = antiguedad;
 	}
 
-//	public Boolean getAlquiler() {
-//		return alquiler;
-//	}
-//
-//	public void setAlquiler(Boolean alquiler) {
-//		this.alquiler = alquiler;
-//	}
-//
-//	public Boolean getVenta() {
-//		return venta;
-//	}
-//
-//	public void setVenta(Boolean venta) {
-//		this.venta = venta;
-//	}
 
 	public Propietario getPropietario() {
 		return propietario;

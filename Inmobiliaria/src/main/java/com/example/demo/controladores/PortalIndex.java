@@ -1,14 +1,12 @@
 package com.example.demo.controladores;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.entidades.Propietario;
 import com.example.demo.errores.ErrorServicio;
 import com.example.demo.servicio.UsuarioService;
 
@@ -40,20 +38,19 @@ public class PortalIndex {
 	}
 
 	@GetMapping("/login")
-	public String loginForm(ModelMap model) throws ErrorServicio {
+	public String loginForm(@RequestParam(required = false) String error, @RequestParam(required = false) String logout, ModelMap model) throws ErrorServicio {
 
-//		Usuario usuario = usuarioService.findUserByEmail(email, contrasenia);
-
-//		model.put("usuario", usuario);
-
+		if (error != null) {
+            model.put("error", "Usuario o clave incorrectos");
+        }
+        if (logout != null) {
+            model.put("logout", "Ha salido correctamente.");
+        }
+		
 		return "04-login";
 
 	}
 
-	@GetMapping("/Inquilino")
-	public String inquilino() {
-		return "06-inquilino.html";
-	}
 
 	@GetMapping("/registroPropiedad")
 	public String registroPropiedad() {

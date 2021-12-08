@@ -11,6 +11,6 @@ import com.example.demo.entidades.Propiedad;
 @Repository
 public interface PropiedadRepositorio extends JpaRepository<Propiedad, String> {
 
-	@Query(value = "SELECT a FROM Local a")
+	@Query(value = "SELECT a FROM Propiedad a")
 	List<Propiedad> findAllpropiedades();
 }

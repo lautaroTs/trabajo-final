@@ -21,19 +21,21 @@
 		<form th:action="@{/propiedad/crearPropiedad}" method="post" class="col-md-12">
 			<div class="row">
 				<div class="col-md-6">
-					<label for="operacion">Tipo de operación</label><br>
-					<select class="form-select" name="operacion" id="operacion" required>
-						<option value="1">Alquiler</option>
-						<option value="2">Venta</option>
+					<label for="tipo">Tipo de operación</label><br>
+					<select name="operacion" class="form-select" id="tipo" required>
+						<option value=""></option>
+						<option value="alquiler">Alquiler</option>
+						<option value="venta">Venta</option>
+						<option value="alquiler y venta">Alquiler / Venta</option>
 					</select><br>
 				</div>
-				<!--<div class="col-md-6">
+				<div class="col-md-6">
 					<label for="tipo">Tipo de propiedad</label><br>
-					<select class="form-select" id="tipo" required>
+					<select name="tipoDePropiedad" class="form-select" id="tipo" required>
 						<option value=""></option>
-						<option value="1" name="Departamento">Departamento</option>
-						<option value="2" name="Casa">Casa</option>
-						<option value="3" name="Local">Local Comercial</option>
+						<option value="departamento">Departamento</option>
+						<option value="casa">Casa</option>
+						<option value="local">Local Comercial</option>
 					</select><br>
 				</div>
 			</div>
@@ -41,25 +43,25 @@
 
 				<div class="col">
 					<label for="tipo">Cantidad de ambientes</label><br>
-					<select class="form-select" id="tipo" required>
-						<option value=""></option>
-						<option value="1">1 ambiente</option>
-						<option value="2">2 ambientes</option>
-						<option value="3">3 ambientes</option>
-						<option value="3">4 ambientes</option>
-						<option value="3">+4 ambientes</option>
+					<select name="ambientes" class="form-select" id="tipo" required>
+						<option value="cero">0</option>
+						<option value="1">1 Ambiente</option>
+						<option value="2">2 Ambientes</option>
+						<option value="3">3 Ambientes</option>
+						<option value="4">4 Ambientes</option>
+						<option value="+4">+4 Ambientes</option>
 					</select><br>
 
 				</div>
 				<div class="col-md-6">
 					<label for="tipo">Cantidad de Dormitorios</label><br>
-					<select class="form-select" id="tipo" required>
+					<select name="dormitorios" class="form-select" id="tipo" required>
 						<option value=""></option>
 						<option value="1">1 Dormitorio</option>
 						<option value="2">2 Dormitorios</option>
 						<option value="3">3 Dormitorios</option>
-						<option value="3">4 Dormitorios</option>
-						<option value="3">+4 Dormitorios</option>
+						<option value="4">4 Dormitorios</option>
+						<option value="+4">+4 Dormitorios</option>
 					</select><br>
 				</div>
 			</div>
@@ -67,125 +69,101 @@
 
 				<div class="col-md-6">
 					<label for="tipo">Cantidad de Baños</label><br>
-					<select class="form-select" id="tipo" required>
+					<select name="banios" class="form-select" id="tipo" required>
 						<option value=""></option>
 						<option value="1">1 Baño</option>
-						<option value="2">2 baños</option>
+						<option value="2">2 Baños</option>
 						<option value="3">3 Baños</option>
-						<option value="3">+4 ambientes</option>
+						<option value="3">+4 Baños</option>
 					</select><br>
 
 				</div>
 				<div class="col-md-6">
 					<label for="tipo">Antiguedad</label><br>
-					<select class="form-select" id="tipo" required>
-						<option value=""></option>
-						<option value="1">A estrenar</option>
-						<option value="2">1 - 5 años</option>
-						<option value="3">6 - 10 años</option>
-						<option value="3">11 - 15 años</option>
-						<option value="3">+ 15 años</option>
+					<select name="antiguedad" class="form-select" id="tipo" required>
+
+						<option value="estrenar" selected="selected">A estrenar</option>
+						<option value="1 - 5 años">1 - 5 años</option>
+						<option value="6 - 10 años">6 - 10 años</option>
+						<option value="11 - 15 años">11 - 15 años</option>
+						<option value="+ 15 años">+ 15 años</option>
 					</select><br>
 				</div>
-			</div>-->
+			</div>
 
 
 			<div class="row">
 
 				<div class="col">
 
-					<label for="direccion">Ingrese Calle</label><br>
-					<input type="text" name="direccion" id="direccion" / required><br>
+					<label for="Superficie">Superficie en m2</label><br>
+					<input type="text" name="superficie" id="Superficie" required><br>
 				</div>
-				<!--<div class="col">
+				
+				<div class="col">
 
-					<label for="Direccion">Numero</label><br>
-					<input type="text" name="Numero" id="Direccion" / required><br>
+					<label for="Direccion">Ingrese Calle</label><br>
+					<input type="text" name="direccion" id="Direccion" required><br>
 				</div>
-				<div class="col">-->
 
-					<label for="zona">Localidad</label><br>
-					<input type="text" name="zona" id="zona" / required><br>
-				</div>
-				<!--<div class="col">
+				<div class="col">
 
-					<label for="Direccion">Partido</label><br>
-					<input type="text" name="Direccion" id="Direccion" / required><br>
+					<label for="localidad">Localidad</label><br>
+					<input type="text" name="zona" id="zona" required><br>
 				</div>
 
 			</div>
 			<br>
 			<div class="row">
-
+			
 				<div class="col">
 
-					<label for="Cochera">Posee Cochera propia</label><br><br>
-					<input type="radio" name="Cochera" id="Cochera" required> Sí<br>
-					<input type="radio" name="Cochera" id="Cochera" required> No<br>
+					<label for="estacionamiento">Cochera</label><br><br>
+					<input type="radio" name="estacionamiento" id="estacionamiento" value="si" required> Sí<br>
+					<input type="radio" name="estacionamiento" id="estacionamiento" value="no" required> No<br>
+
 				</div>
+				
 				<div class="col">
 
 					<label for="expensas">paga Expensas</label><br><br>
-					<input type="radio" name="expensas" id="expensas" required> Sí<br>
-					<input type="radio" name="expensas" id="expensas" required> No<br>
+					<input type="radio" name="expensas" id="expensas" value="si" required> Sí<br>
+					<input type="radio" name="expensas" id="expensas" value="no" required> No<br>
 
 				</div>
+
 				<div class="col">
-
-					<label for="espacios">espacios comunes</label><br><br>
-					<input type="radio" name="espacios" id="espacios" required> Sí<br>
-					<input type="radio" name="espacios" id="espacios" required> No<br>
-
+					<label for="amoblado">Se entrega con muebles</label><br><br>
+					<input type="radio" name="amoblado" id="amoblado" value="si" required> Sí<br>
+					<input type="radio" name="amoblado" id="muebles" value="no" required> No<br>
 				</div>
-				<div class="col">
 
-					<label for="muebles">Se entrega con muebles</label><br><br>
-					<input type="radio" name="muebles" id="muebles" required> Sí<br>
-					<input type="radio" name="muebles" id="muebles" required> No<br>
-				</div>
-				<div class="col">
-
-					<label for="piscina">Posee piscina</label><br><br>
-					<input type="radio" name="piscina" id="piscina" required> Sí<br>
-					<input type="radio" name="piscina" id="piscina" required> No<br>
-				</div>
 				<div class="col">
 
 					<label for="mascotas">Apto para mascotas</label><br><br>
-					<input type="radio" name="mascotas" id="mascotas" required> Sí<br>
-					<input type="radio" name="mascotas" id="mascotas" required> No<br>
+					<input type="radio" name="mascotas" id="mascotas" value="si" required> Sí<br>
+					<input type="radio" name="mascotas" id="mascotas" value="no" required> No<br>
 				</div>
 
 			</div>
 			<div class="comment-container" style="padding: 5px;">
 				<label for="comentarios"></label><br>
-				<textarea name="" id="comentarios" placeholder="Ingrese Comentarios de su publicación" class="commentA"
-					style="width:100%; min-height: 100px;"></textarea>
-			</div>
-
-
+				<textarea name="comentarios" id="comentarios" placeholder="Ingrese Comentarios de su publicación"
+					class="commentA" style="width:100%; min-height: 100px;"></textarea>
 			</div>
 			<br>
 			<div class="row">
 				<div class="col-md-4">
 					<label for="precio">Ingrese el valor de la propiedad </label><br>
-					<input style="width: 100%;height: 39px ;" type="number" min="1" step="any" name="precio" id="precio"
-						/ required>
+					<input style="width: 100%;height: 39px;" type="number" min="1" step="any" name="precio" id="precio"
+						required>
 				</div>
-				<div class="col-md-1">
-					<label for="tipo">Moneda</label><br>
-					<select class="form-select" id="Moneda" required>
-						<option value=""></option>
-						<option value="1">ARS</option>
-						<option value="2">USD</option>
-					</select><br>
-				</div>
+
 				<div class="col-md-1">
 					<label for="Periodo">Periodo</label><br>
-					<select class="form-select" id="Periodo" required>
-						<option value=""></option>
-						<option value="1">Mensual</option>
-						<option value="2">Final</option>
+					<select name="periodo" class="form-select" id="Periodo" required>
+						<option value="mensual">Mensual</option>
+						<option value="final">Final</option>
 					</select>
 				</div>
 			</div>
@@ -193,14 +171,14 @@
 			<div class="row">
 				<div class="col-md-6">
 					<label for="fotos">Seleccione imagenes</label><br>
-					<input type="file" name="" id="fotos">
+					<input type="file" name="foto" id="fotos">
 				</div>
-			</div>-->
+			</div>
 			<br>
 			<div class="row">
 				<div class="col-md-6">
 					<label for="submit">Enviar Registro</label><br>
-					<button type="submit" class="btn btn-primary">Registrar</button>
+					<button type="submit" class="btn btn-primary">Enviar</button>
 				</div>
 			</div>
 

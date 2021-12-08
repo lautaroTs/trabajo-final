@@ -19,6 +19,13 @@
 
 	</header>
 	<br><br>
+	
+	<div th:if="${logout}!=null" class="card text-white bg-primary mb-3">
+		<div class="card-body">
+			<h5 class="card-title">Logout</h5>
+			<p class="card-text" th:text="${logout}"></p>
+		</div>
+	</div>
 
 	<section style="background-color: rgb(158, 248, 170);">
 		<div class="container"><br>

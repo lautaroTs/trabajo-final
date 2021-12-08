@@ -1,22 +1,23 @@
 package com.example.demo.servicio;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.security.core.GrantedAuthority;
-import java.util.ArrayList;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import javax.servlet.http.HttpSession;
-import org.springframework.security.core.userdetails.User;
 
 import com.example.demo.entidades.Usuario;
 import com.example.demo.errores.ErrorServicio;
@@ -158,22 +159,6 @@ public class UsuarioService implements UserDetailsService {
 		} else {
 			throw new ErrorServicio("Contraseña incorrecta");
 		}
-	}
-
-	public Boolean esPropietario(Usuario usuario) throws ErrorServicio {
-		PropietarioService propietarioService = new PropietarioService();
-		if (propietarioService.esPropietario(usuario)) {
-			return true;
-		}
-		return false;
-	}
-
-	public Boolean esInquilino(Usuario usuario) throws ErrorServicio {
-		InquilinoService inquilinoService = new InquilinoService();
-		if (inquilinoService.esInquilino(usuario)) {
-			return true;
-		}
-		return false;
 	}
 
 	@Transactional

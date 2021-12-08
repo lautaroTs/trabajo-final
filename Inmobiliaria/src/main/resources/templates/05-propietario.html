@@ -15,12 +15,6 @@
 	<header>
 		<div th:replace="fragments/navbar :: nav_bar"></div>
 	</header>
-	<section>
-		<h1 th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre}"></h1>
-		<h2 th:if="${session.usuariosession != null}" th:text="${session.usuariosession.apellido}"></h2>
-		
-
-	</section>
 	<div>
 		<table class="table">
 			<thead>
