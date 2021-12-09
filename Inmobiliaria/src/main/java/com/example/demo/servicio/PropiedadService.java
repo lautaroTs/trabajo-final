@@ -30,6 +30,7 @@ public class PropiedadService {
 			String estacionamiento, Double precio, String tipoDePropiedad, String expensas, Integer plantas,
 			String antiguedad, String operacion, Integer dormitorios, Integer ambientes, String amoblado,
 			String mascotas) throws ErrorServicio {
+<<<<<<< HEAD
 
 		Validar(zona, direccion, superficie, banios, estacionamiento, precio, tipoDePropiedad, expensas, plantas,
 				antiguedad, operacion, dormitorios, ambientes, amoblado, mascotas);
@@ -63,6 +64,44 @@ public class PropiedadService {
 
 		propiedadRepositorio.save(propiedad);
 		return propiedad;
+=======
+		try {
+			Validar(zona, direccion, superficie, banios, estacionamiento, precio, tipoDePropiedad, expensas, plantas,
+					antiguedad, operacion, dormitorios, ambientes, amoblado, mascotas);
+
+			Propiedad propiedad = new Propiedad();
+//	Optional<Propietario> respuesta = propietarioRepositorio.buscarPorEmail(propietario.getEmail());
+
+			propiedad.setZona(zona);
+			propiedad.setDireccion(direccion);
+			propiedad.setSuperficie(superficie);
+			propiedad.setBanios(banios);
+			propiedad.setEstacionamiento(estacionamiento);
+			propiedad.setTipoDePropiedad(tipoDePropiedad);
+			propiedad.setPrecio(precio);
+//	propiedad.setDisponibilidadInicio(disponibilidadInicio);
+//	propiedad.setDisponibilidadFinal(disponibilidadFinal);
+			propiedad.setExpensas(expensas);
+			propiedad.setPlantas(plantas);
+			propiedad.setAntiguedad(antiguedad);
+			propiedad.setOperacion(operacion);
+			propiedad.setDormitorios(dormitorios);
+			propiedad.setAmbientes(ambientes);
+			propiedad.setAmoblado(amoblado);
+			propiedad.setMascotas(mascotas);
+//	Foto foto = fotoService.guardar(archivo);
+//	propiedad.setFoto(foto);
+
+//	if (respuesta.isPresent()) {
+//		propiedad.setPropietario(respuesta.get());
+//	}
+			propiedadRepositorio.save(propiedad);
+			return propiedad;
+		} catch (Exception e) {
+			throw new ErrorServicio ("error guardando la propiedad");
+		}
+
+>>>>>>> 4112ebde9bbb6693ac4c29cada6339742ac972f1
 	}
 
 	@Transactional
@@ -241,6 +280,7 @@ public class PropiedadService {
 
 	}
 
+<<<<<<< HEAD
 	public Propiedad buscarPropiedadId(String id) throws ErrorServicio {
 
 		Optional<Propiedad> respuesta = propiedadRepositorio.findById(id);
@@ -254,6 +294,31 @@ public class PropiedadService {
 		} else {
 			throw new ErrorServicio("No se encontro la propiedad solicitada");
 		}
+=======
+	@Transactional
+	public List<Propiedad> buscarPropiedadPorZona(String zona) throws ErrorServicio {
+
+		try {
+			return propiedadRepositorio.FindByZona(zona);
+
+		} catch (Exception e) {
+			throw new ErrorServicio("no se encuentra la propiedad");
+		}
+
+	}
+
+	@Transactional
+	public Propiedad buscarPropiedadPorId(String id) throws ErrorServicio {
+
+		try {
+			Optional<Propiedad> respuesta = propiedadRepositorio.FindById(id);
+			return respuesta.get();
+
+		} catch (Exception e) {
+			throw new ErrorServicio("no se encuentra la propiedad a modificar");
+		}
+
+>>>>>>> 4112ebde9bbb6693ac4c29cada6339742ac972f1
 	}
 
 }
