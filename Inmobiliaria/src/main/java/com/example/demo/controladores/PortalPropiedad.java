@@ -1,10 +1,7 @@
 package com.example.demo.controladores;
 
-<<<<<<< HEAD
-=======
 import java.util.List;
 
->>>>>>> 4112ebde9bbb6693ac4c29cada6339742ac972f1
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,11 +25,7 @@ public class PortalPropiedad {
 
 	@GetMapping("/crearPropiedad")
 	public String crearPropiedad() {
-<<<<<<< HEAD
-		return "crearPropiedad.html";
-=======
 		return "registroPropiedad.html";
->>>>>>> 4112ebde9bbb6693ac4c29cada6339742ac972f1
 	}
 
 //	@PostMapping("/crearPropiedad")
@@ -52,20 +45,6 @@ public class PortalPropiedad {
 //	}
 
 	@PostMapping("/crearPropiedad")
-<<<<<<< HEAD
-	public String crearPropiedad(ModelMap model, @RequestParam String zona, @RequestParam String direccion,
-			@RequestParam Double superficie, @RequestParam Integer banios, @RequestParam String estacionamiento,
-			@RequestParam Double precio, @RequestParam String tipoDePropiedad, @RequestParam String expensas,
-			Integer plantas, @RequestParam String antiguedad, @RequestParam String operacion,
-			@RequestParam Integer dormitorios, @RequestParam Integer ambientes, @RequestParam String amoblado,
-			@RequestParam String mascotas) {
-
-		try {
-			propiedadService.crearPropiedad(zona, direccion, superficie, banios, estacionamiento, precio,
-					tipoDePropiedad, expensas, plantas, antiguedad, operacion, dormitorios, ambientes, amoblado,
-					mascotas);
-			model.put("exito", "la propiedad ha sido creado exitosamente");
-=======
 	public String crearPropiedad(ModelMap model, @RequestParam(required = false) String id, @RequestParam String zona,
 			@RequestParam String direccion, @RequestParam Double superficie, @RequestParam Integer banios,
 			@RequestParam String estacionamiento, @RequestParam Double precio, @RequestParam String tipoDePropiedad,
@@ -85,7 +64,6 @@ public class PortalPropiedad {
 				model.put("exito", "la propiedad ha sido creado exitosamente");
 			}
 
->>>>>>> 4112ebde9bbb6693ac4c29cada6339742ac972f1
 		} catch (ErrorServicio e) {
 			model.put("error", "la propiedad no pudo ser creado");
 			return "07-registroPropiedad.html";
@@ -95,34 +73,6 @@ public class PortalPropiedad {
 
 	}
 
-<<<<<<< HEAD
-	@GetMapping("/modificar/{id}")
-	public String modificarPropiedad(Model model, @PathVariable String id) throws ErrorServicio {
-
-		Propiedad prop = propiedadService.buscarPropiedadId(id);
-		model.addAttribute("propiedad", prop);
-		return "07-registroPropiedad.html";
-	}
-
-	@PostMapping("/modificarPropiedad")
-	public String modificarPropiedad(@RequestParam String id, @RequestParam String zona, @RequestParam String direccion,
-			@RequestParam Double superficie, @RequestParam Integer banios, @RequestParam String estacionamiento,
-			@RequestParam Double precio, @RequestParam String tipoDePropiedad, @RequestParam String expensas,
-			Integer plantas, @RequestParam String antiguedad, @RequestParam String operacion,
-			@RequestParam Integer dormitorios, @RequestParam Integer ambientes, @RequestParam String amoblado,
-			@RequestParam String mascotas) {
-
-		try {
-			propiedadService.modificarPropiedad(id, zona, direccion, superficie, banios, estacionamiento, precio,
-					tipoDePropiedad, expensas, plantas, antiguedad, operacion, dormitorios, ambientes, amoblado,
-					mascotas);
-		} catch (ErrorServicio e) {
-			e.printStackTrace();
-			return "05-propietario.html";
-		}
-
-		return "index.html";
-=======
 //	@GetMapping("/modificar/{id}")
 //	public String modificarPropiedad(Model model, @PathVariable String id) throws ErrorServicio {
 //
@@ -144,7 +94,6 @@ public class PortalPropiedad {
 			return "08-respuestaBusqueda";
 		}
 
->>>>>>> 4112ebde9bbb6693ac4c29cada6339742ac972f1
 	}
 
 	@GetMapping("/eliminar")
@@ -167,13 +116,6 @@ public class PortalPropiedad {
 		return "index.html";
 	}
 
-<<<<<<< HEAD
-	@GetMapping("/creaP")
-	public String creaPropiedades(Model model, @PathVariable String id) throws ErrorServicio {
-		Propiedad propiedad = propiedadService.buscarPropiedadId(id);
-		model.addAttribute("propiedad", propiedad);
-		return "/05-propietario";
-=======
 	@GetMapping("/busqueda")
 	public String buscarPorZona(Model model, @RequestParam String zona) throws ErrorServicio {
 		try {
@@ -189,7 +131,6 @@ public class PortalPropiedad {
 	@GetMapping("/detalle")
 	public String detallePropiedad() {
 		return "propiedad";
->>>>>>> 4112ebde9bbb6693ac4c29cada6339742ac972f1
 	}
 
 }
